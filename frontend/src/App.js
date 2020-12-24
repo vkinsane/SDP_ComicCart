@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import dummyimg from "./assets/images/img-deathnote.jpg";
 import {
+  Badge,
   Carousel,
   Nav,
   FormControl,
@@ -26,12 +27,14 @@ import Helper from "./helper_methods/helper";
 
 export default class App extends Component {
   state = {
+    userName: "",
     logout: false,
     logoutBtnVisible: localStorage.getItem("isLoggedIn"),
     userIsAdmin: JSON.parse(localStorage.getItem("userData"))
       ? JSON.parse(localStorage.getItem("userData")).role === 1
       : false,
     // showAdminRoutes: localStorage.getItem("isLoggedIn"),
+    url: window.location.pathname !== "http://localhost:3000/cart",
   };
   componentDidMount() {
     this.setState({
@@ -56,6 +59,7 @@ export default class App extends Component {
   }
   showPrivateRoutes() {
     if (localStorage.getItem("isLoggedIn")) {
+      this.state.userName = JSON.parse(localStorage.getItem("userData"));
       return JSON.parse(localStorage.getItem("isLoggedIn"));
     } else {
       return false;
@@ -112,85 +116,125 @@ export default class App extends Component {
   };
   render() {
     return (
-      <div className="App">
-        <Router>
-          <Navbar bg="dark" variant="dark" className="sticky-top">
-            <Navbar.Brand href="/">ComicCart</Navbar.Brand>
-            <Nav className="mr-auto">
-              {/* <Nav.Link href="/home">Home</Nav.Link> */}
-              {!localStorage.getItem("isLoggedIn") && (
-                <React.Fragment>
-                  <Nav.Link href="/login">Login</Nav.Link>
-                  <Nav.Link href="/register">Register</Nav.Link>
-                </React.Fragment>
-              )}
-              <Nav.Link href="/cart">Cart</Nav.Link>
-              <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-              {/* Show admin links */}
-              {/* Helper Component to check whether user is admin or not */}
-              <Helper />
-            </Nav>
-            <Form inline>
-              {this.state.logoutBtnVisible && (
-                <Button variant="outline-danger" onClick={this.logout}>
-                  Logout
-                </Button>
-              )}
-              {/* if user clicks on logout then redirect him to /login route */}
-              {this.state.logout && <Redirect to="/login/loggedout" />}
-              &nbsp;&nbsp;&nbsp;
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
+      <React.Fragment>
+        <div className="App">
+          <Router>
+            <Navbar bg="dark" variant="dark" className="sticky-top">
+              <Navbar.Brand href="/">ComicCart</Navbar.Brand>
+              <Nav className="mr-auto">
+                {/* <Nav.Link href="/home">Home</Nav.Link> */}
+                {!localStorage.getItem("isLoggedIn") && (
+                  <React.Fragment>
+                    <Nav.Link href="/login">Login</Nav.Link>
+                    <Nav.Link href="/register">Register</Nav.Link>
+                  </React.Fragment>
+                )}
+                <Nav.Link href="/cart">Cart</Nav.Link>
+                <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                {/* Show admin links */}
+                {/* Helper Component to check whether user is admin or not */}
+                <Helper />
+              </Nav>
+              <Form inline>
+                {this.state.logoutBtnVisible && (
+                  <React.Fragment>
+                    <Button variant="outline-primary">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="25"
+                        fill="currentColor"
+                        class="bi bi-person-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
+                        />
+                      </svg>
+                      &nbsp;&nbsp;
+                      {this.state.userName.fullName}
+                      &nbsp;&nbsp;&nbsp;
+                      <Button variant="danger" onClick={this.logout}>
+                        Logout
+                      </Button>
+                    </Button>
+                  </React.Fragment>
+                )}
+                {/* if user clicks on logout then redirect him to /login route */}
+                {this.state.logout && <Redirect to="/login/loggedout" />}
+                &nbsp;&nbsp;&nbsp;
+                {/* <FormControl
+                  type="text"
+                  placeholder="Search"
+                  className="mr-sm-2"
+                />
+                <Button variant="outline-info">Search</Button> */}
+              </Form>
+            </Navbar>
+            {/* <Route path="/" exact render={() => landingPage()} />{" "} */}
+            {/* <Route path="/" exact render={() => <h1>Hello World</h1>} />{" "} */}
+            <Route path="/" exact render={() => <Home />} />{" "}
+            <Route path="/login" render={() => <Login />} />
+            <Route path="/register" exact render={() => <AddUser />} />
+            {this.showPrivateRoutes() ? (
+              <React.Fragment>
+                <Route path="/cart" exact render={() => <Cart />} />
+                <Route path="/dashboard" render={() => <Dashboard />} />
+                <Route path="/payment" render={() => <Paymentpage />} />
+              </React.Fragment>
+            ) : (
+              <Route
+                path={["/cart", "/dashboard", "/payment"]}
+                exact
+                render={() => (
+                  <Login
+                    message={"Please Login to access this route 🗝"}
+                    alertType={"warning"}
+                  />
+                )}
               />
-              <Button variant="outline-info">Search</Button>
-            </Form>
-          </Navbar>
-          {/* <Route path="/" exact render={() => landingPage()} />{" "} */}
-          {/* <Route path="/" exact render={() => <h1>Hello World</h1>} />{" "} */}
-          <Route path="/" exact render={() => <Home />} />{" "}
-          <Route path="/login" render={() => <Login />} />
-          <Route path="/register" exact render={() => <AddUser />} />
-          {this.showPrivateRoutes() ? (
-            <React.Fragment>
-              <Route path="/cart" exact render={() => <Cart />} />
-              <Route path="/dashboard" render={() => <Dashboard />} />
-              <Route path="/payment" render={() => <Paymentpage />} />
-            </React.Fragment>
-          ) : (
-            <Route
-              path={["/cart", "/dashboard", "/payment"]}
-              exact
-              render={() => (
-                <Login
-                  message={"Please Login to access this route 🗝"}
-                  alertType={"warning"}
-                />
-              )}
-            />
-          )}
-          {/* Admin routes */}
-          {this.state.userIsAdmin ? (
-            <React.Fragment>
-              <Route path="/addbook" exact render={() => <Addbook />} />
-              <Route path="/updatebook" exact render={() => <Updatebook />} />
-              <Route path="/deletebook" exact render={() => <Deletebook />} />
-            </React.Fragment>
-          ) : (
-            <Route
-              path={["/addbook", "/updatebook", "/deletebook"]}
-              exact
-              render={() => (
-                <Login
-                  message={"You are not an admin to acces to this route"}
-                  alertType={"info"}
-                />
-              )}
-            />
-          )}
-        </Router>
-      </div>
+            )}
+            {/* Admin routes */}
+            {this.state.userIsAdmin ? (
+              <React.Fragment>
+                <Route path="/addbook" exact render={() => <Addbook />} />
+                <Route path="/updatebook" exact render={() => <Updatebook />} />
+                <Route path="/deletebook" exact render={() => <Deletebook />} />
+              </React.Fragment>
+            ) : (
+              <Route
+                path={["/addbook", "/updatebook", "/deletebook"]}
+                exact
+                render={() => (
+                  <Login
+                    message={"You are not an admin to acces to this route"}
+                    alertType={"info"}
+                  />
+                )}
+              />
+            )}
+          </Router>
+        </div>
+
+        {/* {window.location.pathname !== "http://localhost:3000/cart" && (
+          <footer className="footer mt-auto py-3 text-light bg-dark">
+            <div className="container">
+              <span className="">ComicCart &#169; 2020-21</span>
+            </div>
+          </footer>
+        )} */}
+        <footer className="footer mt-auto py-3 text-light bg-dark">
+          <div className="container">
+            <span className="">ComicCart &#169; 2020-21</span>
+          </div>
+        </footer>
+      </React.Fragment>
     );
   }
 }

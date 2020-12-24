@@ -188,14 +188,45 @@ class Dashboard extends Component {
           {this.state.purchasedBooks.map((eachBook) => {
             return (
               <React.Fragment>
-                <Card border="secondary" style={{ width: "20rem" }}>
+                <Card
+                  className="shadow-lg bg-white rounded"
+                  border="secondary"
+                  style={{ width: "20rem" }}
+                >
                   <ImageHelper book={eachBook} />
                   <Card.Header>
                     <h4>{eachBook.bookName}</h4>
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title>Author : {eachBook.author}</Card.Title>
-                    <Card.Text>Description is to be added here</Card.Text>
+                    <table>
+                      <tr>
+                        <td>
+                          {" "}
+                          <Card.Title>Author</Card.Title>
+                        </td>
+                        <td>
+                          <Card.Title>:</Card.Title>
+                        </td>
+                        <td>
+                          <Card.Title>{eachBook.author}</Card.Title>
+                        </td>
+                      </tr>
+                      <tr className="text-left">
+                        <td>
+                          <Card.Title>Price</Card.Title>
+                        </td>
+                        <td>
+                          {" "}
+                          <Card.Title>:</Card.Title>
+                        </td>
+                        <Card.Title>₹{eachBook.price}</Card.Title>
+                        <td> </td>
+                      </tr>
+                    </table>
+                    {/* <Card.Title>Author : {eachBook.author}</Card.Title>
+
+                    <Card.Text>Price : ₹{eachBook.price}</Card.Text> */}
+                    {/* <Card.Text>Description is to be added here</Card.Text> */}
                     {/* <a
                     href="https://drive.google.com/file/d/1lz5rjFogSIu3FP8Vt1S8U5DmZv2uAqA5/view?usp=sharing"
                     download
@@ -203,12 +234,24 @@ class Dashboard extends Component {
                     {/* add this `&export=download` to your book link to get download link */}
                     <Button
                       variant="outline-success"
+                      // className="text-center"
                       block
                       value={eachBook._id}
                       href={eachBook.link}
                       download={`${eachBook.bookName}` + ".pdf"}
                     >
-                      Download
+                      Download &nbsp;&nbsp;
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        fill="currentColor"
+                        class="bi bi-download"
+                        viewBox="0 0 25 21"
+                      >
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                      </svg>
                     </Button>
                     {/* </a> */}
                   </Card.Body>

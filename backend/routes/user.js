@@ -5,7 +5,7 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 // const formidable = require("formidable");
 const user = require("../models/user_model");
-
+// const index = require("./index.html");
 router.get("/getusers", (req, res) => {
   user
     .find()
@@ -209,11 +209,11 @@ router.post("/paynow", [parseUrl, parseJson], (req, res) => {
 
         res.writeHead(200, { "Content-Type": "text/html" });
         res.write(
-          '<html><head><title>Merchant Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' +
+          '<html><head><title>Merchant Checkout Page</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" /><link rel="icon" href="./paytm.svg" type="image/x-icon" /></head><body><div class="text-center"><h1>Please do not refresh this page...</h1><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><form method="post" action="' +
             txn_url +
             '" name="f1">' +
             form_fields +
-            '</form><script type="text/javascript">document.f1.submit();</script></body></html>'
+            '</form></div><script type="text/javascript">document.f1.submit();</script></body></html>'
         );
         res.end();
       }
@@ -280,23 +280,7 @@ router.post("/callback", (req, res) => {
 
             var _result = JSON.parse(response);
             if (_result.STATUS == "TXN_SUCCESS") {
-              res.send(`<html>
-              <head>
-              <body><h1>You will be redirected to Dashboard in 2 sec.</h1></body>
-                 <script type = "text/javascript">
-                    <!--
-                       function Redirect() {
-                          window.location = "http://localhost:3000/dashboard/1";
-                       }            
-                       
-                       setTimeout('Redirect()', 2000);
-                    //-->
-                 </script>
-              </head>
-              
-              <body>
-              </body>
-           </html>`);
+              res.sendFile("./paymentsuccess.html", { root: __dirname });
             } else {
               res.send("payment failed");
             }

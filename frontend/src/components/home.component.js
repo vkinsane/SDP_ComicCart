@@ -121,26 +121,64 @@ class Home extends Component {
           {this.state.allbooks.map((eachBook) => {
             return (
               <React.Fragment>
-                <Card border="secondary" style={{ width: "20rem" }}>
+                <Card
+                  className="shadow bg-white rounded"
+                  border="secondary"
+                  style={{ width: "20rem" }}
+                >
                   <ImageHelper book={eachBook} />
                   <Card.Header>
                     <h4>{eachBook.bookName}</h4>
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title>Author : {eachBook.author}</Card.Title>
+                    {/* <Card.Title>Author : {eachBook.author}</Card.Title>
                     <Card.Title>Price : ₹{eachBook.price}</Card.Title>
-                    <Card.Text>
-                      {eachBook.description}
-                      {/* show price(on a button) ,tags,stock */}
-                      {/* Description is to be added here */}
-                    </Card.Text>
+                    <Card.Text>{eachBook.description}</Card.Text> */}
+                    {/* ************** */}
+                    <table>
+                      <tr>
+                        <td>
+                          {" "}
+                          <Card.Title>Author</Card.Title>
+                        </td>
+                        <td>
+                          <Card.Title>:</Card.Title>
+                        </td>
+                        <td>
+                          <Card.Title>{eachBook.author}</Card.Title>
+                        </td>
+                      </tr>
+                      <tr className="text-left">
+                        <td>
+                          <Card.Title>Price</Card.Title>
+                        </td>
+                        <td>
+                          {" "}
+                          <Card.Title>:</Card.Title>
+                        </td>
+                        <Card.Title>₹{eachBook.price}</Card.Title>
+                        <td> </td>
+                      </tr>
+                    </table>
+                    {/* ************** */}
                     <Button
                       variant="outline-primary"
                       onClick={this.addToCart}
                       block
                       value={eachBook._id}
                     >
-                      Add To Cart
+                      Add To Cart &nbsp;&nbsp;
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        fill="currentColor"
+                        class="bi bi-cart-plus"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                      </svg>
                     </Button>
                   </Card.Body>
                 </Card>

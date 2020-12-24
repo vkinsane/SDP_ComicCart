@@ -199,24 +199,66 @@ class Cart extends Component {
           {/* <CardDeck> */}
           {this.state.userCart.map((eachBook) => {
             return (
-              <Card border="secondary" style={{ width: "20rem" }}>
-                <ImageHelper book={eachBook} />
-                <Card.Header>
-                  <h4>{eachBook.bookName}</h4>
-                </Card.Header>
-                <Card.Body>
-                  <Card.Title>Author : {eachBook.author}</Card.Title>
-                  <Card.Text>Description is to be added here</Card.Text>
-                  <Button
-                    variant="outline-primary"
-                    onClick={this.removeFromCart}
-                    block
-                    value={eachBook._id}
-                  >
-                    Remove From Cart
-                  </Button>
-                </Card.Body>
-              </Card>
+              <React.Fragment>
+                <Card
+                  className="shadow bg-white rounded"
+                  border="secondary"
+                  style={{ width: "20rem" }}
+                >
+                  <ImageHelper book={eachBook} />
+                  <Card.Header>
+                    <h4>{eachBook.bookName}</h4>
+                  </Card.Header>
+                  <Card.Body>
+                    <table>
+                      <tr>
+                        <td>
+                          {" "}
+                          <Card.Title>Author</Card.Title>
+                        </td>
+                        <td>
+                          <Card.Title>:</Card.Title>
+                        </td>
+                        <td>
+                          <Card.Title>{eachBook.author}</Card.Title>
+                        </td>
+                      </tr>
+                      <tr className="text-left">
+                        <td>
+                          <Card.Title>Price</Card.Title>
+                        </td>
+                        <td>
+                          {" "}
+                          <Card.Title>:</Card.Title>
+                        </td>
+                        <Card.Title>₹{eachBook.price}</Card.Title>
+                        <td> </td>
+                      </tr>
+                    </table>
+                    {/* ********************* */}
+                    <Button
+                      variant="outline-primary"
+                      onClick={this.removeFromCart}
+                      block
+                      value={eachBook._id}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        fill="currentColor"
+                        class="bi bi-cart-x"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z" />
+                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                      </svg>
+                      Remove From Cart
+                    </Button>
+                  </Card.Body>
+                </Card>
+                &nbsp;&nbsp;&nbsp;
+              </React.Fragment>
             );
           })}
           {/* </CardDeck> */}
@@ -225,11 +267,24 @@ class Cart extends Component {
         {!this.state.hideBillCard && (
           <React.Fragment>
             <Card
-              className="float-right"
+              // className="floa  t-right"
               border="primary"
-              style={{ width: "18rem" }}
+              style={{ width: "18rem", left: "85%" }}
             >
-              <Card.Header>Bill</Card.Header>
+              <Card.Header>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  class="bi bi-calculator"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
+                  <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z" />
+                </svg>
+                Bill
+              </Card.Header>
               <Card.Body>
                 <Card.Title>ComicCart Bill</Card.Title>
                 <Card.Text>
@@ -265,7 +320,18 @@ class Cart extends Component {
                     onClick={this.booksToDashboard}
                     block
                   >
-                    Proceed to checkout
+                    Proceed to checkout&nbsp;&nbsp;
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="18"
+                      fill="currentColor"
+                      class="bi bi-credit-card"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
+                      <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
+                    </svg>
                   </Button>
 
                   {/* <Button
