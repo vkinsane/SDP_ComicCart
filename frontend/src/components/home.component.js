@@ -42,79 +42,61 @@ class Home extends Component {
   addToCart = ({ target }) => {
     const { value } = target;
     // this.state.payload.push(value);
-    axios
-      .get(`http://localhost:8080/book/${value}`)
-      .then((res) => {
-        this.state.payload.push(res.data);
-        axios({
-          url: `http://localhost:8080/user/updateusercart/${localStorage.getItem(
-            "userId"
-          )}`,
-          method: "PUT", //check here put
-          data: { cart: this.state.payload },
-        })
-          .then(() => {
-            console.log("Successful");
-            // this.setState({ bookAddedToCart: true });
-            this.setState({
-              bookAddedToCart: true,
-              alertType: "success",
-              message: "Book has been added to your cart 👍",
-            });
+    if (localStorage.getItem("isLoggedIn")) {
+      axios
+        .get(`http://localhost:8080/book/${value}`)
+        .then((res) => {
+          this.state.payload.push(res.data);
+          axios({
+            url: `http://localhost:8080/user/updateusercart/${localStorage.getItem(
+              "userId"
+            )}`,
+            method: "PUT", //check here put
+            data: { cart: this.state.payload },
           })
-          .catch(() => {
-            console.log("Internal Server error");
-            this.setState({
-              bookAddedToCart: false,
-              alertType: "danger",
-              message: "There was an error!",
+            .then(() => {
+              console.log("Successful");
+              // this.setState({ bookAddedToCart: true });
+              this.setState({
+                showAlert: true,
+                alertType: "success",
+                message: "Book has been added to your cart 👍",
+              });
+            })
+            .catch(() => {
+              console.log("Internal Server error");
+              this.setState({
+                showAlert: true,
+                alertType: "danger",
+                message: "There was an error!",
+              });
             });
-          });
-      })
-      .catch(() => {
-        console.log("there was some error");
-      });
+        })
+        .catch(() => {
+          console.log("there was some error");
+        });
 
-    console.log(this.state.payload);
+      console.log(this.state.payload);
+    } else {
+      this.setState({
+        showAlert: true,
+        alertType: "danger",
+        message: "Please login to proceed!",
+      });
+    }
   };
 
   timer() {
     setTimeout(() => {
-      this.setState({ bookAddedToCart: false, alertType: "", message: "" });
+      this.setState({ showAlert: false, alertType: "", message: "" });
     }, 3000);
   }
-
-  // updateCart = ({ target }) => {
-  //   // event.preventDefault();
-  //   const { value } = target;
-  //   axios({
-  //     url: `http://localhost:8080/user/updateusercart/5fa38132b18f8233d81c6a4b`,
-  //     method: "PUT", //check here put
-  //     data: { cart: this.state.payload },
-  //   })
-  //     .then(() => {
-  //       console.log("Successful");
-  //     })
-  //     .catch(() => {
-  //       console.log("Internal Server error");
-  //     });
-  // };
 
   render() {
     return (
       <React.Fragment>
-        {/* <Button variant="primary" onClick={this.updateCart} block>
-          Update Cart
-        </Button> */}
-        {!this.timer() && this.state.bookAddedToCart && (
-          <Alert variant={this.state.alertType} dismissible>
-            {this.state.message}
-          </Alert>
-        )}
-        {this.state.id && (
-          <Alert variant="success" dismissible>
-            "worked"
-          </Alert>
+        {!this.timer() && this.state.showAlert && (
+          <Alert variant={this.state.alertType}>{this.state.message}</Alert>
         )}
         <Row>
           {/* <CardDeck style={{ width: "70rem" }}> */}
@@ -131,10 +113,6 @@ class Home extends Component {
                     <h4>{eachBook.bookName}</h4>
                   </Card.Header>
                   <Card.Body>
-                    {/* <Card.Title>Author : {eachBook.author}</Card.Title>
-                    <Card.Title>Price : ₹{eachBook.price}</Card.Title>
-                    <Card.Text>{eachBook.description}</Card.Text> */}
-                    {/* ************** */}
                     <table>
                       <tr>
                         <td>
@@ -188,8 +166,6 @@ class Home extends Component {
           })}
           {/* {console.log(this.state.allbooks)} */}
         </Row>
-
-        {/* </CardDeck> */}
       </React.Fragment>
     );
   }

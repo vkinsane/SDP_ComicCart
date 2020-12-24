@@ -222,13 +222,6 @@ export default class App extends Component {
           </Router>
         </div>
 
-        {/* {window.location.pathname !== "http://localhost:3000/cart" && (
-          <footer className="footer mt-auto py-3 text-light bg-dark">
-            <div className="container">
-              <span className="">ComicCart &#169; 2020-21</span>
-            </div>
-          </footer>
-        )} */}
         <footer className="footer mt-auto py-3 text-light bg-dark">
           <div className="container">
             <span className="">ComicCart &#169; 2020-21</span>
