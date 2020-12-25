@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 const ImageHelper = ({ book }) => {
   const imageurl = book
     ? `http://localhost:8080/book/photo/${book._id}`

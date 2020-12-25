@@ -3,15 +3,7 @@ import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 // this below import is neccessary for working of the React-bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import dummyimg from "./assets/images/img-deathnote.jpg";
-import {
-  Badge,
-  Carousel,
-  Nav,
-  FormControl,
-  Form,
-  Button,
-  Navbar,
-} from "react-bootstrap";
+import { Carousel, Nav, Form, Button, Navbar } from "react-bootstrap";
 import "./App.css";
 import Home from "./components/home.component";
 import Addbook from "./components/addbook.component";
@@ -22,7 +14,6 @@ import AddUser from "./components/adduser.component";
 import Login from "./components/loginpage.component";
 import Dashboard from "./components/dashboard.component";
 import Paymentpage from "./components/paymentpage.component";
-import Navrouter from "./components/navbar_routing.component";
 import Helper from "./helper_methods/helper";
 
 export default class App extends Component {

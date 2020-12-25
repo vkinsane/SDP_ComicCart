@@ -90,58 +90,17 @@ class Cart extends Component {
       alertType: "success",
       message: "Redirecting!",
     });
-    // const { value } = target;
-    // axios
-    //   .get(
-    //     `http://localhost:8080/user/getuser/${localStorage.getItem("userId")}`
-    //   )
-    //   .then((res) => {
-    //     this.setState({ purchasedBooks: res.data.purchasedBooks });
-    //     this.state.purchasedBooks = this.state.purchasedBooks.concat(
-    //       this.state.userCart
-    //     );
-    //     // send book to user's dashboard
-
-    //     axios({
-    //       url: `http://localhost:8080/user/updatepurchasedbooks/${localStorage.getItem(
-    //         "userId"
-    //       )}`,
-    //       method: "PUT", //check here put
-    //       data: { purchasedBooks: this.state.purchasedBooks },
-    //     })
-    //       .then(() => {
-    //         console.log("Successful");
-    //         this.setState({
-    //           proceedToPayment: true,
-    //           alertType: "success",
-    //           message: "Successfully Updated Purchased books 👍",
-    //         });
     localStorage.setItem("totalAmount", this.state.totalAmount);
-    //       })
-    //       .catch(() => {
-    //         console.log("Internal Server error");
-    //         this.setState({
-    //           proceedToPayment: false,
-    //           alertType: "danger",
-    //           message: "There was an error!",
-    //         });
-    //       });
-    //     // *****************************
-    //   })
-    //   .catch(() => {
-    //     console.log("there was some error");
-    //   });
-    // Emptying user cart
-    // axios({
-    //   url: `http://localhost:8080/user/updateusercart/${localStorage.getItem(
-    //     "userId"
-    //   )}`,
-    //   method: "PUT",
-    //   data: { cart: [] },
-    // }).then(() => {
-    //   console.log("Emptied User cart");
-    // });
   };
+
+  showMessage = () => {
+    this.setState({
+      showAlert: true,
+      alertType: "warning",
+      message: "Please add something in cart to proceed",
+    });
+  };
+
   sendMail = ({ target }) => {
     const { id } = target;
     const payLoad = {
@@ -298,11 +257,8 @@ class Cart extends Component {
                     </thead>
                     <tbody>
                       {this.state.userCart.map((eachBook) => {
-                        // this.state.srNo = this.state.srNo + 1;
-                        // this.state.price = this.state.price + eachBook.price;
                         return (
                           <tr>
-                            {/* <td>{this.state.srNo}</td> */}
                             <td>{eachBook.bookName}</td>
                             <td>₹{eachBook.price}</td>
                           </tr>
@@ -310,14 +266,17 @@ class Cart extends Component {
                       })}
                       <tr>
                         <td>Total Price</td>
-                        {/* <td>₹{this.priceCounter(this.state.userCart)}</td> */}
                         <td>₹{this.priceCounter()}</td>
                       </tr>
                     </tbody>
                   </Table>
                   <Button
                     variant="primary"
-                    onClick={this.booksToDashboard}
+                    onClick={
+                      this.priceCounter() == 0
+                        ? this.showMessage
+                        : this.booksToDashboard
+                    }
                     block
                   >
                     Proceed to checkout&nbsp;&nbsp;
