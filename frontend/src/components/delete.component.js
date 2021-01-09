@@ -107,7 +107,7 @@ class Deletebook extends Component {
             borderRadius: "0px",
           }}
         >
-          <thead className="table-dark">
+          <thead className="table-warning">
             <tr>
               <th>
                 <svg

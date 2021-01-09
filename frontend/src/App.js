@@ -12,6 +12,7 @@ import Deletebook from "./components/delete.component";
 import Cart from "./components/cart.component";
 import AddUser from "./components/adduser.component";
 import Login from "./components/loginpage.component";
+import Admindashboard from "./components/admindashboard.component";
 import Dashboard from "./components/dashboard.component";
 import Paymentpage from "./components/paymentpage.component";
 import Helper from "./helper_methods/helper";
@@ -122,9 +123,7 @@ export default class App extends Component {
                   </React.Fragment>
                 )}
                 <Nav.Link href="/cart">Cart</Nav.Link>
-                <Nav.Link href="/dashboard">
-                  {this.showAdminRoutes() ? "Dashboard" : "My Books"}
-                </Nav.Link>
+                <Nav.Link href="/dashboard">My Books</Nav.Link>
 
                 {/* Show admin links */}
                 {/* Helper Component to check whether user is admin or not */}
@@ -202,6 +201,11 @@ export default class App extends Component {
                 <Route path="/addbook" exact render={() => <Addbook />} />
                 <Route path="/updatebook" exact render={() => <Updatebook />} />
                 <Route path="/deletebook" exact render={() => <Deletebook />} />
+                <Route
+                  path="/admindashboard"
+                  exact
+                  render={() => <Admindashboard />}
+                />
               </React.Fragment>
             ) : (
               <Route

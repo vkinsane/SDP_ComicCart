@@ -9,6 +9,7 @@ export default class Helper extends Component {
             <Nav.Link href="/addbook">Add Book</Nav.Link>
             <Nav.Link href="/updatebook">Update Book</Nav.Link>
             <Nav.Link href="/deletebook">Delete Book</Nav.Link>
+            <Nav.Link href="/admindashboard">Admin Dashboard</Nav.Link>
           </React.Fragment>
         );
       }
