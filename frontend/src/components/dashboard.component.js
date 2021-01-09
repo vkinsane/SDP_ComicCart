@@ -30,6 +30,13 @@ class Dashboard extends Component {
           "Your Purchase was successfull. Book has been added to your dashboard 👍",
       });
     }
+    if (statusCode == 2) {
+      this.setState({
+        showAlert: true,
+        alertType: "danger",
+        message: "Your Purchase was failed. Try again!!!",
+      });
+    }
   }
   componentDidMount() {
     axios

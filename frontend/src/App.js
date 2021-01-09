@@ -114,6 +114,7 @@ export default class App extends Component {
               <Navbar.Brand href="/">ComicCart</Navbar.Brand>
               <Nav className="mr-auto">
                 {/* <Nav.Link href="/home">Home</Nav.Link> */}
+
                 {!localStorage.getItem("isLoggedIn") && (
                   <React.Fragment>
                     <Nav.Link href="/login">Login</Nav.Link>
@@ -121,9 +122,13 @@ export default class App extends Component {
                   </React.Fragment>
                 )}
                 <Nav.Link href="/cart">Cart</Nav.Link>
-                <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                <Nav.Link href="/dashboard">
+                  {this.showAdminRoutes() ? "Dashboard" : "My Books"}
+                </Nav.Link>
+
                 {/* Show admin links */}
                 {/* Helper Component to check whether user is admin or not */}
+
                 <Helper />
               </Nav>
               <Form inline>
@@ -175,7 +180,7 @@ export default class App extends Component {
             <Route path="/register" exact render={() => <AddUser />} />
             {this.showPrivateRoutes() ? (
               <React.Fragment>
-                <Route path="/cart" exact render={() => <Cart />} />
+                <Route path="/cart" render={() => <Cart />} />
                 <Route path="/dashboard" render={() => <Dashboard />} />
                 <Route path="/payment" render={() => <Paymentpage />} />
               </React.Fragment>
@@ -215,7 +220,10 @@ export default class App extends Component {
 
         <footer className="footer mt-auto py-3 text-light bg-dark">
           <div className="container">
-            <span className="">ComicCart &#169; 2020-21</span>
+            <span className="">
+              ComicCart &#169; 2020-21 | For any queries please contact on{" "}
+              <a href="">vishal.khandate19@vit.edu</a>
+            </span>
           </div>
         </footer>
       </React.Fragment>

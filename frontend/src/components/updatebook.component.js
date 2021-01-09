@@ -36,6 +36,7 @@ class Updatebook extends Component {
     const { name, value } = target;
     this.state.formData.set(name, value);
     this.setState({ [name]: value });
+    // Its not logging the book data at same time
     console.log(
       this.state.getBookDB.filter(
         (book) => book.bookName == this.state.bookName

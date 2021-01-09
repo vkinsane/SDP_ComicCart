@@ -39,7 +39,7 @@ class Home extends Component {
   }
 
   addToCart = ({ target }) => {
-    const { value } = target;
+    const { name, value } = target;
     // this.state.payload.push(value);
     if (localStorage.getItem("isLoggedIn")) {
       axios
@@ -59,7 +59,7 @@ class Home extends Component {
               this.setState({
                 showAlert: true,
                 alertType: "success",
-                message: "Book has been added to your cart 👍",
+                message: `"${name}" comic book has been added to your cart 👍`,
               });
             })
             .catch(() => {
@@ -94,8 +94,23 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        {!this.timer() && this.state.showAlert && (
-          <Alert variant={this.state.alertType}>{this.state.message}</Alert>
+        {this.state.showAlert && (
+          <Alert variant={this.state.alertType}>
+            {this.state.message}{" "}
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+              onClick={() => {
+                this.setState({
+                  showAlert: false,
+                });
+              }}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </Alert>
         )}
         <Row>
           {/* <CardDeck style={{ width: "70rem" }}> */}
@@ -143,6 +158,7 @@ class Home extends Component {
                       onClick={this.addToCart}
                       block
                       value={eachBook._id}
+                      name={eachBook.bookName}
                     >
                       Add To Cart &nbsp;&nbsp;
                       <svg

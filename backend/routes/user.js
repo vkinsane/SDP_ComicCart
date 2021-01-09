@@ -282,7 +282,8 @@ router.post("/callback", (req, res) => {
             if (_result.STATUS == "TXN_SUCCESS") {
               res.sendFile("./paymentsuccess.html", { root: __dirname });
             } else {
-              res.send("payment failed");
+              res.sendFile("./paymentfailure.html", { root: __dirname });
+              // res.send("payment failed");
             }
           });
         });
