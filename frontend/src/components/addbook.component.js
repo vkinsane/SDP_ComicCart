@@ -20,6 +20,7 @@ class Addbook extends Component {
     const value = name === "photo" ? event.target.files[0] : event.target.value;
     this.state.formData.set(name, value);
     this.setState({ [name]: value });
+    console.log(this.state.photo);
   };
   handleChange = ({ target }) => {
     //taking element on which this method is applied, target is a keyword
