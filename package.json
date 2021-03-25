@@ -11,8 +11,11 @@
     "react-scripts": "3.4.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cd backend && node server.js",
     "build": "react-scripts build",
+    "build-for-heroku":"cd frontend && npm run build",
+    "install-frontend":"cd frontend && npm install",
+    "heroku-postbuild":"npm run install-frontend && npm run build-for-heroku",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
