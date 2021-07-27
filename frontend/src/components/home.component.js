@@ -4,6 +4,7 @@ import { Alert, Button, Card, Row } from "react-bootstrap";
 import axios from "axios";
 import ImageHelper from "./imagehelper.component";
 // import imageurl from "../../src/assets/images/cardimage.webp";
+var key = 0;
 class Home extends Component {
   state = {
     allbooks: [],
@@ -101,7 +102,7 @@ class Home extends Component {
             {this.state.message}{" "}
             <button
               type="button"
-              class="close"
+              className="close"
               data-dismiss="alert"
               aria-label="Close"
               onClick={() => {
@@ -118,7 +119,7 @@ class Home extends Component {
           {/* <CardDeck style={{ width: "70rem" }}> */}
           {this.state.allbooks.map((eachBook) => {
             return (
-              <React.Fragment>
+              <React.Fragment key={++key}>
                 <Card
                   className="shadow bg-white rounded"
                   border="secondary"
@@ -130,29 +131,31 @@ class Home extends Component {
                   </Card.Header>
                   <Card.Body>
                     <table>
-                      <tr>
-                        <td>
-                          {" "}
-                          <Card.Title>Author</Card.Title>
-                        </td>
-                        <td>
-                          <Card.Title>:</Card.Title>
-                        </td>
-                        <td>
-                          <Card.Title>{eachBook.author}</Card.Title>
-                        </td>
-                      </tr>
-                      <tr className="text-left">
-                        <td>
-                          <Card.Title>Price</Card.Title>
-                        </td>
-                        <td>
-                          {" "}
-                          <Card.Title>:</Card.Title>
-                        </td>
-                        <Card.Title>₹{eachBook.price}</Card.Title>
-                        <td> </td>
-                      </tr>
+                      <tbody>
+                        <tr>
+                          <td>
+                            {" "}
+                            <Card.Title>Author</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>:</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>{eachBook.author}</Card.Title>
+                          </td>
+                        </tr>
+                        <tr className="text-left">
+                          <td>
+                            <Card.Title>Price</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>:</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>₹{eachBook.price}</Card.Title>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                     {/* ************** */}
                     <Button
@@ -168,7 +171,7 @@ class Home extends Component {
                         width="30"
                         height="30"
                         fill="currentColor"
-                        class="bi bi-cart-plus"
+                        className="bi bi-cart-plus"
                         viewBox="0 0 20 20"
                       >
                         <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />

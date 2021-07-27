@@ -21,7 +21,7 @@ class Dashboard extends Component {
     var pageUrl = window.location.pathname;
     var indexOfStatus = pageUrl.indexOf("dashboard");
     var statusCode = pageUrl.substring(indexOfStatus + 10, pageUrl.length);
-    this.state.statusCode = statusCode;
+    this.setState({ statusCode: statusCode });
     if (statusCode === 1) {
       this.setState({
         showAlert: true,
@@ -99,9 +99,11 @@ class Dashboard extends Component {
         )
         .then((res) => {
           this.setState({ purchasedBooks: res.data.purchasedBooks });
-          this.state.purchasedBooks = this.state.purchasedBooks.concat(
-            this.state.userCart
-          );
+          this.setState({
+            purchasedBooks: this.state.purchasedBooks.concat(
+              this.state.userCart
+            ),
+          });
           console.log(this.state.purchasedBooks);
           // send book to user's dashboard
           axios({
@@ -259,7 +261,7 @@ class Dashboard extends Component {
                         width="30"
                         height="30"
                         fill="currentColor"
-                        class="bi bi-download"
+                        className="bi bi-download"
                         viewBox="0 0 25 21"
                       >
                         <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />

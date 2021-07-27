@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 // this below import is neccessary for working of the React-bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import dummyimg from "./assets/images/img-deathnote.jpg";
-import { Carousel, Nav, Form, Button, Navbar } from "react-bootstrap";
+import { Carousel, Nav, Form, Button, Navbar, Alert } from "react-bootstrap";
 import "./App.css";
 import Home from "./components/home.component";
 import Addbook from "./components/addbook.component";
@@ -16,10 +16,10 @@ import Admindashboard from "./components/admindashboard.component";
 import Dashboard from "./components/dashboard.component";
 import Paymentpage from "./components/paymentpage.component";
 import Helper from "./helper_methods/helper";
-
+var userName = {};
 export default class App extends Component {
   state = {
-    userName: "",
+    // userName: "",
     logout: false,
     logoutBtnVisible: localStorage.getItem("isLoggedIn"),
     userIsAdmin: JSON.parse(localStorage.getItem("userData"))
@@ -40,7 +40,8 @@ export default class App extends Component {
       if (JSON.parse(localStorage.getItem("userData")).role === 1) {
         // return JSON.parse(localStorage.getItem("userData"));
         // console.log("this user is admin");
-        this.state.userIsAdmin = true;
+        // this.state.userIsAdmin = true;
+        this.setState({ userIsAdmin: true });
         return true;
       } else {
         return false;
@@ -51,7 +52,7 @@ export default class App extends Component {
   }
   showPrivateRoutes() {
     if (localStorage.getItem("isLoggedIn")) {
-      this.state.userName = JSON.parse(localStorage.getItem("userData"));
+      userName = JSON.parse(localStorage.getItem("userData"));
       return JSON.parse(localStorage.getItem("isLoggedIn"));
     } else {
       return false;
@@ -133,32 +134,32 @@ export default class App extends Component {
               <Form inline>
                 {this.state.logoutBtnVisible && (
                   <React.Fragment>
-                    <Button variant="outline-primary">
+                    <Alert variant="primary">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="25"
                         height="25"
                         fill="currentColor"
-                        class="bi bi-person-circle"
+                        className="bi bi-person-circle"
                         viewBox="0 0 16 16"
                       >
                         <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
                         />
                         <path
-                          fill-rule="evenodd"
+                          fillRule="evenodd"
                           d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
                         />
                       </svg>
                       &nbsp;&nbsp;
-                      {this.state.userName.fullName}
+                      {userName.fullName}
                       &nbsp;&nbsp;&nbsp;
                       <Button variant="danger" onClick={this.logout}>
                         Logout
                       </Button>
-                    </Button>
+                    </Alert>
                   </React.Fragment>
                 )}
                 {/* if user clicks on logout then redirect him to /login route */}
@@ -226,7 +227,9 @@ export default class App extends Component {
           <div className="container">
             <span className="">
               ComicCart &#169; 2020-21 | For any queries please contact on{" "}
-              <a href="">vishal.khandate19@vit.edu</a>
+              <a href="https://vishal-khandate.netlify.app/">
+                vishal.khandate19@vit.edu
+              </a>
             </span>
           </div>
         </footer>

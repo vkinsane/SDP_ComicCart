@@ -92,7 +92,7 @@ class Cart extends Component {
       alertType: "success",
       message: "Redirecting!",
     });
-    localStorage.setItem("totalAmount", this.state.totalAmount);
+    localStorage.setItem("totalAmount", this.priceCounter());
   };
 
   showMessage = () => {
@@ -145,7 +145,8 @@ class Cart extends Component {
       totalPrice = totalPrice + parseInt(eachBook.price);
       return 0;
     });
-    this.state.totalAmount = totalPrice;
+    // this.state.totalAmount = totalPrice;
+
     return totalPrice;
   };
   render() {
@@ -209,7 +210,7 @@ class Cart extends Component {
                         width="30"
                         height="30"
                         fill="currentColor"
-                        class="bi bi-cart-x"
+                        className="bi bi-cart-x"
                         viewBox="0 0 20 20"
                       >
                         <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z" />
@@ -239,7 +240,7 @@ class Cart extends Component {
                   width="30"
                   height="30"
                   fill="currentColor"
-                  class="bi bi-calculator"
+                  className="bi bi-calculator"
                   viewBox="0 0 20 20"
                 >
                   <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
@@ -288,7 +289,7 @@ class Cart extends Component {
                       width="16"
                       height="18"
                       fill="currentColor"
-                      class="bi bi-credit-card"
+                      className="bi bi-credit-card"
                       viewBox="0 0 16 16"
                     >
                       <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />

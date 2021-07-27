@@ -88,7 +88,7 @@ class Addbook extends Component {
             {this.state.message}{" "}
             <button
               type="button"
-              class="close"
+              className="close"
               data-dismiss="alert"
               aria-label="Close"
               onClick={() => {
@@ -103,7 +103,7 @@ class Addbook extends Component {
         )}
         {/* <label className="btn btn-block btn-success">Add Book</label> */}
         <div
-          class="alert alert-primary"
+          className="alert alert-primary"
           role="alert"
           style={{
             // border: "1px solid black",
@@ -116,7 +116,7 @@ class Addbook extends Component {
             width="25"
             height="25"
             fill="currentColor"
-            class="bi bi-journal-plus"
+            className="bi bi-journal-plus"
             viewBox="0 0 16 16"
           >
             <path
@@ -201,7 +201,7 @@ class Addbook extends Component {
             width="30"
             height="30"
             fill="currentColor"
-            class="bi bi-clipboard-plus"
+            className="bi bi-clipboard-plus"
             viewBox="0 0 20 20"
           >
             <path

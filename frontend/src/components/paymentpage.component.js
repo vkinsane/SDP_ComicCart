@@ -39,37 +39,37 @@ class Paymentpage extends Component {
   render() {
     // return <div dangerouslySetInnerHTML={{ __html: this.state.paymentForm }} />;
     return (
-      <div class="row my-5">
-        <div class="col-md-4 offset-md-4">
-          <div class="card">
-            <div class="card-body">
+      <div className="row my-5">
+        <div className="col-md-4 offset-md-4">
+          <div className="card">
+            <div className="card-body">
               <form
-                class=""
+                className=""
                 action="https://backend-api-comiccart.herokuapp.com/user/paynow"
                 method="post"
               >
-                <div class="form-group">
+                <div className="form-group">
                   <label for="">Name: </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     name="name"
                     value={this.state.userData.fullName}
                   />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="">Email: </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     name="email"
                     value={this.state.userData.userEmail}
                   />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="">Phone: </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="number"
                     // pattern="\d*"
                     // maxlength="10"
@@ -77,18 +77,20 @@ class Paymentpage extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="">Amount: </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     name="amount"
                     // value={this.state.amount()}
                     value={localStorage.getItem("totalAmount")}
                   />
                 </div>
-                <div class="form-group">
-                  <button class="btn form-control btn-primary">Pay Now</button>
+                <div className="form-group">
+                  <button className="btn form-control btn-primary">
+                    Pay Now
+                  </button>
                 </div>
               </form>
             </div>

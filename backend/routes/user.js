@@ -210,7 +210,7 @@ router.post("/paynow", [parseUrl, parseJson], (req, res) => {
 
         res.writeHead(200, { "Content-Type": "text/html" });
         res.write(
-          '<html><head><title>Merchant Checkout Page</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" /><link rel="icon" href="./paytm.svg" type="image/x-icon" /></head><body><div class="text-center"><h1>Please do not refresh this page...</h1><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><form method="post" action="' +
+          '<html><head><title>Merchant Checkout Page</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" /><link rel="icon" href="./paytm.svg" type="image/x-icon" /></head><body><div className="text-center"><h1>Please do not refresh this page...</h1><div className="spinner-border text-primary" role="status"><span className="visually-hidden">Loading...</span></div><form method="post" action="' +
             txn_url +
             '" name="f1">' +
             form_fields +

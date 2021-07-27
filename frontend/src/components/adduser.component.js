@@ -82,7 +82,7 @@ export default class AddUser extends Component {
           }}
         >
           <div
-            class="alert alert-primary"
+            className="alert alert-primary"
             role="alert"
             style={{
               // border: "1px solid black",
@@ -163,7 +163,7 @@ export default class AddUser extends Component {
                 width="25"
                 height="25"
                 fill="currentColor"
-                class="bi bi-person-plus-fill"
+                className="bi bi-person-plus-fill"
                 viewBox="0 0 16 16"
               >
                 <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />

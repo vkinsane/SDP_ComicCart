@@ -10,6 +10,10 @@ import {
   InputGroup,
 } from "react-bootstrap";
 import axios from "axios";
+
+var messageGlobal = "";
+var alertTypeGlobal = "";
+
 export default class Login extends Component {
   state = {
     fname: "",
@@ -35,15 +39,15 @@ export default class Login extends Component {
       afterLogoutUrl.substring(indexOflogin + 6, afterLogoutUrl.length) ===
       "loggedout"
     ) {
-      this.state.message = "Logged Out Successfully 👋";
-      this.state.alertType = "info";
+      messageGlobal = "Logged Out Successfully 👋";
+      alertTypeGlobal = "info";
     }
     if (
       afterLogoutUrl.substring(indexOflogin + 6, afterLogoutUrl.length) ===
       "useradded"
     ) {
-      this.state.message = "User Added Successfully ✔";
-      this.state.alertType = "info";
+      messageGlobal = "User Added Successfully ✔";
+      alertTypeGlobal = "info";
     }
     // console.log(afterLogoutUrl[indexOflogin + 6]);
   }
@@ -102,7 +106,12 @@ export default class Login extends Component {
         {this.props && (
           <Alert variant={this.props.alertType}>{this.props.message}</Alert>
         )}
-        <Alert variant={this.state.alertType}>{this.state.message}</Alert>
+        {this.state.message && (
+          <Alert variant={this.state.alertType}>{this.state.message}</Alert>
+        )}
+        {messageGlobal && (
+          <Alert variant={alertTypeGlobal}>{messageGlobal}</Alert>
+        )}
         <Form
           className="shadow-lg bg-white rounded"
           onSubmit={this.submit}
