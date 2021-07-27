@@ -27,7 +27,7 @@ class Cart extends Component {
       .then((res) => {
         this.setState({ userCart: res.data.cart });
         // console.log(this.state.userCart);
-        if (this.state.userCart == "") {
+        if (this.state.userCart === "") {
           this.setState({
             showAlert: true,
             alertType: "info",
@@ -71,7 +71,7 @@ class Cart extends Component {
       method: "PUT", //check here put
       data: { cart: this.state.userCart },
     }).then(() => {
-      if (this.state.userCart == "") {
+      if (this.state.userCart === "") {
         this.setState({
           showAlert: true,
           alertType: "info",
@@ -143,6 +143,7 @@ class Cart extends Component {
     var totalPrice = 0;
     this.state.userCart.map((eachBook) => {
       totalPrice = totalPrice + parseInt(eachBook.price);
+      return 0;
     });
     this.state.totalAmount = totalPrice;
     return totalPrice;
@@ -275,7 +276,7 @@ class Cart extends Component {
                   <Button
                     variant="primary"
                     onClick={
-                      this.priceCounter() == 0
+                      this.priceCounter() === 0
                         ? this.showMessage
                         : this.booksToDashboard
                     }

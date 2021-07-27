@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button, Card, Alert, Table, Form } from "react-bootstrap";
-import ImageHelper from "./imagehelper.component";
+import { Alert, Table } from "react-bootstrap";
 class Admindashboard extends Component {
   state = {
     message: "",
@@ -29,7 +28,7 @@ class Admindashboard extends Component {
   priceCounter(user) {
     var usertotalPrice = 0;
     user.purchasedBooks.map((eachBook) => {
-      usertotalPrice = usertotalPrice + parseInt(eachBook.price);
+      return (usertotalPrice = usertotalPrice + parseInt(eachBook.price));
     });
     this.state.totalPrice = this.state.totalPrice + usertotalPrice;
     return usertotalPrice;
@@ -37,15 +36,15 @@ class Admindashboard extends Component {
   booksCounter(user) {
     var userBooks = 0;
     user.purchasedBooks.map((eachBook) => {
-      userBooks = userBooks + 1;
+      return (userBooks = userBooks + 1);
     });
     this.state.totalBooks = this.state.totalBooks + userBooks;
     return userBooks;
   }
-  usersCounter(user) {
+  usersCounter() {
     var totalUsers = 0;
     this.state.allUsersData.map((eachUser) => {
-      totalUsers = totalUsers + 1;
+      return (totalUsers = totalUsers + 1);
     });
     return totalUsers;
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import {
   Alert,
   Button,
@@ -32,14 +32,14 @@ export default class Login extends Component {
     var indexOflogin = afterLogoutUrl.indexOf("login");
 
     if (
-      afterLogoutUrl.substring(indexOflogin + 6, afterLogoutUrl.length) ==
+      afterLogoutUrl.substring(indexOflogin + 6, afterLogoutUrl.length) ===
       "loggedout"
     ) {
       this.state.message = "Logged Out Successfully 👋";
       this.state.alertType = "info";
     }
     if (
-      afterLogoutUrl.substring(indexOflogin + 6, afterLogoutUrl.length) ==
+      afterLogoutUrl.substring(indexOflogin + 6, afterLogoutUrl.length) ===
       "useradded"
     ) {
       this.state.message = "User Added Successfully ✔";

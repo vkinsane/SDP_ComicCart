@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
-import {
-  Carousel,
-  Nav,
-  FormControl,
-  Form,
-  Button,
-  Navbar,
-} from "react-bootstrap";
+import { Nav, FormControl, Form, Button, Navbar } from "react-bootstrap";
 import "../App.css";
 import Home from "./home.component";
 import Addbook from "./addbook.component";

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Alert, Form, DropdownButton, Dropdown } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 class Updatebook extends Component {
   state = {
     photo: "",
@@ -39,7 +39,7 @@ class Updatebook extends Component {
     // Its not logging the book data at same time
     console.log(
       this.state.getBookDB.filter(
-        (book) => book.bookName == this.state.bookName
+        (book) => book.bookName === this.state.bookName
       )[0]
     );
   };
@@ -55,11 +55,11 @@ class Updatebook extends Component {
       stock: this.state.stock,
       link: this.state.link,
     };
-    if (this.state.bookName != "") {
+    if (this.state.bookName !== "") {
       axios({
         url: `https://backend-api-comiccart.herokuapp.com/book/updateBook/${
           this.state.getBookDB.filter(
-            (book) => book.bookName == this.state.bookName
+            (book) => book.bookName === this.state.bookName
           )[0]._id
         }`,
         method: "PUT", //check here put

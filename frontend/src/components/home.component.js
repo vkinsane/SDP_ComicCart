@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, Button, CardDeck, Card, Row } from "react-bootstrap";
+import { Alert, Button, Card, Row } from "react-bootstrap";
 // import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import axios from "axios";
 import ImageHelper from "./imagehelper.component";

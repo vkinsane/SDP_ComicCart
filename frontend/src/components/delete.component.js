@@ -12,7 +12,7 @@ class Deletebook extends Component {
     srNo: 0,
   };
   componentDidMount() {
-    this.state.srNo = 0;
+    this.setState({ srNo: 0 });
     axios
       .get(`https://backend-api-comiccart.herokuapp.com/book/`)
       .then((res) => {
@@ -55,6 +55,7 @@ class Deletebook extends Component {
           //   console.error(errors);
           console.log("Failed to delete");
         });
+      return 0;
     });
   };
   render() {
