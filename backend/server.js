@@ -31,9 +31,9 @@ mongoose.connect(uri, {
 });
 
 //3
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("../frontend/build"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("../frontend/build"));
+// }
 
 const conn = mongoose.connection;
 
