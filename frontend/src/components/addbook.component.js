@@ -50,7 +50,7 @@ class Addbook extends Component {
     // };
 
     axios({
-      url: "http://localhost:8080/book/addbook",
+      url: "https://backend-api-comiccart.herokuapp.com/book/addbook",
       method: "POST",
       data: this.state.formData,
     })

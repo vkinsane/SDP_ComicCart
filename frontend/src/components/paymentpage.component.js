@@ -22,7 +22,7 @@ class Paymentpage extends Component {
   };
   componentDidMount() {
     // axios
-    //   .get(`http://localhost:8080/user/indexHtml`)
+    //   .get(`https://backend-api-comiccart.herokuapp.com/user/indexHtml`)
     //   .then((res) => {
     //     // this.setState({ paymentForm: res });
     //     this.setState({ paymentForm: res.data });
@@ -45,7 +45,7 @@ class Paymentpage extends Component {
             <div class="card-body">
               <form
                 class=""
-                action="http://localhost:8080/user/paynow"
+                action="https://backend-api-comiccart.herokuapp.com/user/paynow"
                 method="post"
               >
                 <div class="form-group">

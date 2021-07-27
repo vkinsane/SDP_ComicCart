@@ -18,7 +18,7 @@ class Admindashboard extends Component {
   componentDidMount() {
     this.state.srNo = 0;
     axios
-      .get(`http://localhost:8080/user/getusers`)
+      .get(`https://backend-api-comiccart.herokuapp.com/user/getusers`)
       .then((res) => {
         this.setState({ allUsersData: res.data });
       })

@@ -20,7 +20,9 @@ class Cart extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:8080/user/getuser/${localStorage.getItem("userId")}`
+        `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
+          "userId"
+        )}`
       )
       .then((res) => {
         this.setState({ userCart: res.data.cart });
@@ -63,7 +65,7 @@ class Cart extends Component {
     );
     // console.log(this.state);
     axios({
-      url: `http://localhost:8080/user/updateusercart/${localStorage.getItem(
+      url: `https://backend-api-comiccart.herokuapp.com/user/updateusercart/${localStorage.getItem(
         "userId"
       )}`,
       method: "PUT", //check here put
@@ -107,7 +109,7 @@ class Cart extends Component {
       email: id,
     };
     axios({
-      url: "http://localhost:8080/user/sendmail",
+      url: "https://backend-api-comiccart.herokuapp.com/user/sendmail",
       method: "POST",
       data: payLoad,
     })
