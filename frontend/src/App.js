@@ -26,7 +26,7 @@ export default class App extends Component {
       ? JSON.parse(localStorage.getItem("userData")).role === 1
       : false,
     // showAdminRoutes: localStorage.getItem("isLoggedIn"),
-    url: window.location.pathname !== "http://localhost:3000/cart",
+    url: window.location.pathname !== "https://comiccart.netlify.app/cart",
   };
   componentDidMount() {
     this.setState({
