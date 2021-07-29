@@ -63,7 +63,7 @@ export default class Login extends Component {
       password: this.state.password,
     };
     axios({
-      url: "https://backend-api-comiccart.herokuapp.com/user/login",
+      url: "http://localhost:8080/user/login",
       method: "POST",
       data: payLoad,
     })

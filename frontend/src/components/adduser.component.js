@@ -40,7 +40,7 @@ export default class AddUser extends Component {
       role: this.state.userRole,
     };
     axios({
-      url: "https://backend-api-comiccart.herokuapp.com/user/adduser",
+      url: "http://localhost:8080/user/adduser",
       method: "POST",
       data: payLoad,
     })

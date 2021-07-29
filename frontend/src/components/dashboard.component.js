@@ -4,6 +4,7 @@ import { Button, Card, Alert, Row } from "react-bootstrap";
 import ImageHelper from "./imagehelper.component";
 
 var key = 0;
+var statusCode;
 class Dashboard extends Component {
   state = {
     userCart: [],
@@ -22,7 +23,9 @@ class Dashboard extends Component {
   checkStatus() {
     var pageUrl = window.location.pathname;
     var indexOfStatus = pageUrl.indexOf("dashboard");
-    var statusCode = pageUrl.substring(indexOfStatus + 10, pageUrl.length);
+    statusCode = parseInt(
+      pageUrl.substring(indexOfStatus + 10, pageUrl.length)
+    );
     this.setState({ statusCode: statusCode });
     if (statusCode === 1) {
       this.setState({
@@ -43,9 +46,7 @@ class Dashboard extends Component {
   componentDidMount() {
     axios
       .get(
-        `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
-          "userId"
-        )}`
+        `http://localhost:8080/user/getuser/${localStorage.getItem("userId")}`
       )
       .then((res) => {
         this.setState({ purchasedBooks: res.data.purchasedBooks });
@@ -61,13 +62,11 @@ class Dashboard extends Component {
         console.log("there was some error");
       });
     this.checkStatus();
-    if (this.state.statusCode === 1) {
+    if (statusCode === 1) {
       // getting user's cart into this.userCart****
       axios
         .get(
-          `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
-            "userId"
-          )}`
+          `http://localhost:8080/user/getuser/${localStorage.getItem("userId")}`
         )
         .then((res) => {
           this.setState({ userCart: res.data.cart });
@@ -95,9 +94,7 @@ class Dashboard extends Component {
       // taking already purchased book data and concat with this.userCart *****
       axios
         .get(
-          `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
-            "userId"
-          )}`
+          `http://localhost:8080/user/getuser/${localStorage.getItem("userId")}`
         )
         .then((res) => {
           this.setState({ purchasedBooks: res.data.purchasedBooks });
@@ -109,7 +106,7 @@ class Dashboard extends Component {
           console.log(this.state.purchasedBooks);
           // send book to user's dashboard
           axios({
-            url: `https://backend-api-comiccart.herokuapp.com/user/updatepurchasedbooks/${localStorage.getItem(
+            url: `http://localhost:8080/user/updatepurchasedbooks/${localStorage.getItem(
               "userId"
             )}`,
             method: "PUT", //check here put
@@ -139,10 +136,10 @@ class Dashboard extends Component {
     }
   }
   emptyUserCart() {
-    if (this.state.statusCode === 1) {
+    if (statusCode === 1) {
       // Emptying user cart ******
       axios({
-        url: `https://backend-api-comiccart.herokuapp.com/user/updateusercart/${localStorage.getItem(
+        url: `http://localhost:8080/user/updateusercart/${localStorage.getItem(
           "userId"
         )}`,
         method: "PUT",
@@ -160,7 +157,7 @@ class Dashboard extends Component {
       email: id,
     };
     axios({
-      url: "https://backend-api-comiccart.herokuapp.com/user/sendmail",
+      url: "http://localhost:8080/user/sendmail",
       method: "POST",
       data: payLoad,
     })

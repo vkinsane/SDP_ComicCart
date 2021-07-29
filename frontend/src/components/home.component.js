@@ -17,7 +17,7 @@ class Home extends Component {
   };
   componentDidMount() {
     axios
-      .get(`https://backend-api-comiccart.herokuapp.com/book/`)
+      .get(`http://localhost:8080/book/`)
       .then((res) => {
         this.setState({ allbooks: res.data });
       })
@@ -28,9 +28,7 @@ class Home extends Component {
     if (localStorage.getItem("userId")) {
       axios
         .get(
-          `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
-            "userId"
-          )}`
+          `http://localhost:8080/user/getuser/${localStorage.getItem("userId")}`
         )
         .then((res) => {
           this.setState({ payload: res.data.cart });
@@ -46,11 +44,11 @@ class Home extends Component {
     // this.state.payload.push(value);
     if (localStorage.getItem("isLoggedIn")) {
       axios
-        .get(`https://backend-api-comiccart.herokuapp.com/book/${value}`)
+        .get(`http://localhost:8080/book/${value}`)
         .then((res) => {
           this.state.payload.push(res.data);
           axios({
-            url: `https://backend-api-comiccart.herokuapp.com/user/updateusercart/${localStorage.getItem(
+            url: `http://localhost:8080/user/updateusercart/${localStorage.getItem(
               "userId"
             )}`,
             method: "PUT", //check here put
