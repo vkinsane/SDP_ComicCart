@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Button, Card, Alert, Row } from "react-bootstrap";
 import ImageHelper from "./imagehelper.component";
+
+var key = 0;
 class Dashboard extends Component {
   state = {
     userCart: [],
@@ -202,7 +204,7 @@ class Dashboard extends Component {
           {/* <CardDeck> */}
           {this.state.purchasedBooks.map((eachBook) => {
             return (
-              <React.Fragment>
+              <React.Fragment key={++key}>
                 <Card
                   className="shadow-lg bg-white rounded"
                   border="secondary"
@@ -214,29 +216,31 @@ class Dashboard extends Component {
                   </Card.Header>
                   <Card.Body>
                     <table>
-                      <tr>
-                        <td>
-                          {" "}
-                          <Card.Title>Author</Card.Title>
-                        </td>
-                        <td>
-                          <Card.Title>:</Card.Title>
-                        </td>
-                        <td>
-                          <Card.Title>{eachBook.author}</Card.Title>
-                        </td>
-                      </tr>
-                      <tr className="text-left">
-                        <td>
-                          <Card.Title>Price</Card.Title>
-                        </td>
-                        <td>
-                          {" "}
-                          <Card.Title>:</Card.Title>
-                        </td>
-                        <Card.Title>₹{eachBook.price}</Card.Title>
-                        <td> </td>
-                      </tr>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <Card.Title>Author</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>:</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>{eachBook.author}</Card.Title>
+                          </td>
+                        </tr>
+                        <tr className="text-left">
+                          <td>
+                            <Card.Title>Price</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>:</Card.Title>
+                          </td>
+
+                          <td>
+                            <Card.Title>₹{eachBook.price}</Card.Title>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                     {/* <Card.Title>Author : {eachBook.author}</Card.Title>
 

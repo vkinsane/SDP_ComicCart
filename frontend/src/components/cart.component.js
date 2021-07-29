@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Button, Card, Alert, Row, Table } from "react-bootstrap";
 import ImageHelper from "./imagehelper.component";
+var key = 0;
+var key2 = 0;
 class Cart extends Component {
   state = {
     userCart: [],
@@ -162,7 +164,7 @@ class Cart extends Component {
           {/* <CardDeck> */}
           {this.state.userCart.map((eachBook) => {
             return (
-              <React.Fragment>
+              <React.Fragment key={++key}>
                 <Card
                   className="shadow bg-white rounded"
                   border="secondary"
@@ -174,29 +176,30 @@ class Cart extends Component {
                   </Card.Header>
                   <Card.Body>
                     <table>
-                      <tr>
-                        <td>
-                          {" "}
-                          <Card.Title>Author</Card.Title>
-                        </td>
-                        <td>
-                          <Card.Title>:</Card.Title>
-                        </td>
-                        <td>
-                          <Card.Title>{eachBook.author}</Card.Title>
-                        </td>
-                      </tr>
-                      <tr className="text-left">
-                        <td>
-                          <Card.Title>Price</Card.Title>
-                        </td>
-                        <td>
-                          {" "}
-                          <Card.Title>:</Card.Title>
-                        </td>
-                        <Card.Title>₹{eachBook.price}</Card.Title>
-                        <td> </td>
-                      </tr>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <Card.Title>Author</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>:</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>{eachBook.author}</Card.Title>
+                          </td>
+                        </tr>
+                        <tr className="text-left">
+                          <td>
+                            <Card.Title>Price</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>:</Card.Title>
+                          </td>
+                          <td>
+                            <Card.Title>₹{eachBook.price}</Card.Title>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                     {/* ********************* */}
                     <Button
@@ -250,54 +253,54 @@ class Cart extends Component {
               </Card.Header>
               <Card.Body>
                 <Card.Title>ComicCart Bill</Card.Title>
-                <Card.Text>
-                  <Table striped bordered hover>
-                    <thead>
-                      <tr>
-                        {/* <th>#</th> */}
-                        <th>Item Name</th>
-                        <th>Price</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {this.state.userCart.map((eachBook) => {
-                        return (
-                          <tr>
-                            <td>{eachBook.bookName}</td>
-                            <td>₹{eachBook.price}</td>
-                          </tr>
-                        );
-                      })}
-                      <tr>
-                        <td>Total Price</td>
-                        <td>₹{this.priceCounter()}</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                  <Button
-                    variant="primary"
-                    onClick={
-                      this.priceCounter() === 0
-                        ? this.showMessage
-                        : this.booksToDashboard
-                    }
-                    block
+                {/* <Card.Text> */}
+                <Table striped bordered hover>
+                  <thead>
+                    <tr>
+                      {/* <th>#</th> */}
+                      <th>Item Name</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.userCart.map((eachBook) => {
+                      return (
+                        <tr key={++key2}>
+                          <td>{eachBook.bookName}</td>
+                          <td>₹{eachBook.price}</td>
+                        </tr>
+                      );
+                    })}
+                    <tr>
+                      <td>Total Price</td>
+                      <td>₹{this.priceCounter()}</td>
+                    </tr>
+                  </tbody>
+                </Table>
+                <Button
+                  variant="primary"
+                  onClick={
+                    this.priceCounter() === 0
+                      ? this.showMessage
+                      : this.booksToDashboard
+                  }
+                  block
+                >
+                  Proceed to checkout&nbsp;&nbsp;
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="18"
+                    fill="currentColor"
+                    className="bi bi-credit-card"
+                    viewBox="0 0 16 16"
                   >
-                    Proceed to checkout&nbsp;&nbsp;
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="18"
-                      fill="currentColor"
-                      className="bi bi-credit-card"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
-                      <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
-                    </svg>
-                  </Button>
+                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
+                    <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
+                  </svg>
+                </Button>
 
-                  {/* <Button
+                {/* <Button
                   variant="outline-primary"
                   id={localStorage.getItem("userEmail")}
                   onClick={this.sendMail}
@@ -305,7 +308,7 @@ class Cart extends Component {
                 >
                   Send Mail
                 </Button> */}
-                </Card.Text>
+                {/* </Card.Text> */}
               </Card.Body>
             </Card>
             &nbsp;&nbsp;&nbsp;

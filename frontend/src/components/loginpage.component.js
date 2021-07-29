@@ -132,7 +132,7 @@ export default class Login extends Component {
             Login
           </div>
           <Col className="px-4">
-            <Form.Row as={Row} controlId="formBasicText">
+            <Form.Row as={Row} controlid="formBasicText">
               <Form.Label column sm="0">
                 Email
               </Form.Label>
@@ -147,7 +147,7 @@ export default class Login extends Component {
                 {/* <InputGroup.Append>{this.state.emailPatternMsg}</InputGroup.Append> */}
               </InputGroup>
             </Form.Row>
-            <Form.Row as={Row} controlId="formBasicPassword">
+            <Form.Row as={Row} controlid="formBasicPassword">
               <Form.Label column sm="0">
                 Password
               </Form.Label>
