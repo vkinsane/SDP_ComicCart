@@ -318,7 +318,7 @@ class Cart extends Component {
           (window.open(`/payment/${this.state.totalAmount}`, "_self"),
           window.close())} */}
         {this.state.proceedToPayment &&
-          (window.open(`/payment`, "_self"), window.close())}
+          (window.open(`/payment`), window.close())}
         {/* </div> */}
       </React.Fragment>
     );
