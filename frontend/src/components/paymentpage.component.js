@@ -49,25 +49,27 @@ class Paymentpage extends Component {
                 method="post"
               >
                 <div className="form-group">
-                  <label for="">Name: </label>
+                  <label htmlFor="">Name: </label>
                   <input
                     className="form-control"
                     type="text"
                     name="name"
                     value={this.state.userData.fullName}
+                    readOnly
                   />
                 </div>
                 <div className="form-group">
-                  <label for="">Email: </label>
+                  <label htmlFor="">Email: </label>
                   <input
                     className="form-control"
                     type="text"
                     name="email"
                     value={this.state.userData.userEmail}
+                    readOnly
                   />
                 </div>
                 <div className="form-group">
-                  <label for="">Phone: </label>
+                  <label htmlFor="">Phone: </label>
                   <input
                     className="form-control"
                     type="number"
@@ -78,13 +80,14 @@ class Paymentpage extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="">Amount: </label>
+                  <label htmlFor="">Amount: </label>
                   <input
                     className="form-control"
                     type="text"
                     name="amount"
                     // value={this.state.amount()}
                     value={localStorage.getItem("totalAmount")}
+                    readOnly
                   />
                 </div>
                 <div className="form-group">
