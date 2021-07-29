@@ -16,7 +16,7 @@ class Deletebook extends Component {
   componentDidMount() {
     this.setState({ srNo: 0 });
     axios
-      .get(`http://localhost:8080/book/`)
+      .get(`https://backend-api-comiccart.herokuapp.com/book/`)
       .then((res) => {
         this.setState({ allbooks: res.data });
       })
@@ -41,7 +41,9 @@ class Deletebook extends Component {
   delMultiple = () => {
     this.state.delArray.map((eachBookId) => {
       axios
-        .delete(`http://localhost:8080/book/deleteBook/${eachBookId}`)
+        .delete(
+          `https://backend-api-comiccart.herokuapp.com/book/deleteBook/${eachBookId}`
+        )
         .then((res) => {
           this.setState({
             message: "Book Deleted Successfully",

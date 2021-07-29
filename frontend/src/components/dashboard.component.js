@@ -46,7 +46,9 @@ class Dashboard extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:8080/user/getuser/${localStorage.getItem("userId")}`
+        `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
+          "userId"
+        )}`
       )
       .then((res) => {
         this.setState({ purchasedBooks: res.data.purchasedBooks });
@@ -66,7 +68,9 @@ class Dashboard extends Component {
       // getting user's cart into this.userCart****
       axios
         .get(
-          `http://localhost:8080/user/getuser/${localStorage.getItem("userId")}`
+          `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
+            "userId"
+          )}`
         )
         .then((res) => {
           this.setState({ userCart: res.data.cart });
@@ -94,7 +98,9 @@ class Dashboard extends Component {
       // taking already purchased book data and concat with this.userCart *****
       axios
         .get(
-          `http://localhost:8080/user/getuser/${localStorage.getItem("userId")}`
+          `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
+            "userId"
+          )}`
         )
         .then((res) => {
           this.setState({ purchasedBooks: res.data.purchasedBooks });
@@ -106,7 +112,7 @@ class Dashboard extends Component {
           console.log(this.state.purchasedBooks);
           // send book to user's dashboard
           axios({
-            url: `http://localhost:8080/user/updatepurchasedbooks/${localStorage.getItem(
+            url: `https://backend-api-comiccart.herokuapp.com/user/updatepurchasedbooks/${localStorage.getItem(
               "userId"
             )}`,
             method: "PUT", //check here put
@@ -139,7 +145,7 @@ class Dashboard extends Component {
     if (statusCode === 1) {
       // Emptying user cart ******
       axios({
-        url: `http://localhost:8080/user/updateusercart/${localStorage.getItem(
+        url: `https://backend-api-comiccart.herokuapp.com/user/updateusercart/${localStorage.getItem(
           "userId"
         )}`,
         method: "PUT",
@@ -157,7 +163,7 @@ class Dashboard extends Component {
       email: id,
     };
     axios({
-      url: "http://localhost:8080/user/sendmail",
+      url: "https://backend-api-comiccart.herokuapp.com/user/sendmail",
       method: "POST",
       data: payLoad,
     })
