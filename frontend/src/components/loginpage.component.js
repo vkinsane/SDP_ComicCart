@@ -178,7 +178,7 @@ export default class Login extends Component {
             </Button>
           </Col>
         </Form>
-        {this.state.redirect && window.open("/", "_self")}
+        {this.state.redirect && (window.open("/", "_self"), window.close())}
       </Container>
     );
   }
