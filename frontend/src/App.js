@@ -19,6 +19,7 @@ import Helper from "./helper_methods/helper";
 var userName = {};
 export default class App extends Component {
   state = {
+    scrWidth: window.innerWidth,
     // userName: "",
     logout: false,
     logoutBtnVisible: localStorage.getItem("isLoggedIn"),
@@ -34,6 +35,7 @@ export default class App extends Component {
         ? JSON.parse(localStorage.getItem("userData")).role === 1
         : false,
     });
+    // console.log(this.state.scrWidth);
   }
   showAdminRoutes() {
     if (this.showPrivateRoutes()) {
@@ -112,70 +114,92 @@ export default class App extends Component {
       <React.Fragment>
         <div className="App">
           <Router>
-            <Navbar bg="dark" variant="dark" className="sticky-top">
+            <Navbar
+              collapseOnSelect
+              expand="lg"
+              bg="dark"
+              variant="dark"
+              className="sticky-top"
+              style={{
+                justifyContent: "flex-end",
+              }}
+            >
               <Navbar.Brand href="/">ComicCart</Navbar.Brand>
-              <Nav className="mr-auto">
-                {/* <Nav.Link href="/home">Home</Nav.Link> */}
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="me-auto">
+                  {!localStorage.getItem("isLoggedIn") && (
+                    <React.Fragment>
+                      <Nav.Link classname="p-2" href="/login">
+                        Login
+                      </Nav.Link>
+                      <Nav.Link classname="p-2" href="/register">
+                        Register
+                      </Nav.Link>
+                    </React.Fragment>
+                  )}
+                  <Nav.Link classname="p-2" href="/cart">
+                    Cart
+                  </Nav.Link>
+                  <Nav.Link classname="p-2" href="/dashboard">
+                    My Books
+                  </Nav.Link>
 
-                {!localStorage.getItem("isLoggedIn") && (
-                  <React.Fragment>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                    <Nav.Link href="/register">Register</Nav.Link>
-                  </React.Fragment>
-                )}
-                <Nav.Link href="/cart">Cart</Nav.Link>
-                <Nav.Link href="/dashboard">My Books</Nav.Link>
+                  <Helper />
+                  <Nav.Link classname="p-2">
+                    {this.state.scrWidth < 992 && this.state.logoutBtnVisible && (
+                      <React.Fragment>
+                        <Button variant="danger" onClick={this.logout}>
+                          Logout
+                        </Button>
+                      </React.Fragment>
+                    )}
+                  </Nav.Link>
 
-                {/* Show admin links */}
-                {/* Helper Component to check whether user is admin or not */}
-
-                <Helper />
-              </Nav>
-              <Form inline>
-                {this.state.logoutBtnVisible && (
-                  <React.Fragment>
-                    <Alert variant="primary">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="25"
-                        height="25"
-                        fill="currentColor"
-                        className="bi bi-person-circle"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-                        <path
-                          fillRule="evenodd"
-                          d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-                        />
-                        <path
-                          fillRule="evenodd"
-                          d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
-                        />
-                      </svg>
-                      &nbsp;&nbsp;
-                      {userName.fullName}
-                      &nbsp;&nbsp;&nbsp;
-                      <Button variant="danger" onClick={this.logout}>
-                        Logout
-                      </Button>
-                    </Alert>
-                  </React.Fragment>
-                )}
-                {/* if user clicks on logout then redirect him to /login route */}
-                {this.state.logout && <Redirect to="/login/loggedout" />}
-                &nbsp;&nbsp;&nbsp;
-                {/* <FormControl
-                  type="text"
-                  placeholder="Search"
-                  className="mr-sm-2"
-                />
-                <Button variant="outline-info">Search</Button> */}
-              </Form>
+                  {/* Show admin links */}
+                  {/* Helper Component to check whether user is admin or not */}
+                </Nav>
+              </Navbar.Collapse>
+              {/* {console.log(this.state.scrWidth > 992)} */}
+              {this.state.scrWidth > 992 && (
+                <Form inline>
+                  {this.state.logoutBtnVisible && (
+                    <React.Fragment>
+                      <Alert variant="primary" className="m-0 p-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="25"
+                          height="25"
+                          fill="currentColor"
+                          className="bi bi-person-circle"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+                          <path
+                            fillRule="evenodd"
+                            d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"
+                          />
+                        </svg>
+                        &nbsp;&nbsp;
+                        {userName.fullName}
+                        &nbsp;&nbsp;&nbsp;
+                        <Button variant="danger" onClick={this.logout}>
+                          Logout
+                        </Button>
+                      </Alert>
+                    </React.Fragment>
+                  )}
+                  {/* if user clicks on logout then redirect him to /login route */}
+                  {this.state.logout && <Redirect to="/login/loggedout" />}
+                  &nbsp;&nbsp;&nbsp;
+                </Form>
+              )}
             </Navbar>
-            {/* <Route path="/" exact render={() => landingPage()} />{" "} */}
-            {/* <Route path="/" exact render={() => <h1>Hello World</h1>} />{" "} */}
-            <Route path="/" exact render={() => <Home />} />{" "}
+            <Route path="/" exact render={() => <Home />} />
             <Route path="/login" render={() => <Login />} />
             <Route path="/register" exact render={() => <AddUser />} />
             {this.showPrivateRoutes() ? (

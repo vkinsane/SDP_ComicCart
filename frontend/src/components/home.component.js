@@ -7,6 +7,7 @@ import ImageHelper from "./imagehelper.component";
 var key = 0;
 class Home extends Component {
   state = {
+    scrWidth: window.innerWidth,
     allbooks: [],
     imageurl: "",
     cartArray: [],
@@ -99,7 +100,7 @@ class Home extends Component {
       <React.Fragment>
         {this.state.showAlert && (
           <Alert variant={this.state.alertType}>
-            {this.state.message}{" "}
+            {this.state.message}
             <button
               type="button"
               className="close"
@@ -115,26 +116,39 @@ class Home extends Component {
             </button>
           </Alert>
         )}
-        <Row>
+        <Row
+          className="m-auto"
+          style={{
+            width: this.state.scrWidth < 693 ? "min-content" : "",
+          }}
+        >
           {/* <CardDeck style={{ width: "70rem" }}> */}
           {this.state.allbooks.map((eachBook) => {
             return (
               <React.Fragment key={++key}>
                 <Card
-                  className="shadow bg-white rounded"
+                  id="card-book"
+                  className="shadow bg-white rounded mb-3 ml-4"
                   border="secondary"
-                  style={{ width: "20rem" }}
+                  // style={{ width: "20rem", }}
+                  style={{
+                    // maxHeight: "200px",
+                    // height: "50vh",
+                    fontSize: "1px",
+                    maxWidth: "315px",
+                    width: "54vw",
+                    minWidth: "288px",
+                  }}
                 >
                   <ImageHelper book={eachBook} />
-                  <Card.Header>
+                  <Card.Header className="py-1">
                     <h4>{eachBook.bookName}</h4>
                   </Card.Header>
-                  <Card.Body>
+                  <Card.Body className="pr-3 py-2">
                     <table>
                       <tbody>
                         <tr>
                           <td>
-                            {" "}
                             <Card.Title>Author</Card.Title>
                           </td>
                           <td>
