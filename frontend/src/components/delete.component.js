@@ -5,6 +5,7 @@ var serialNum = 0;
 var key = 0;
 class Deletebook extends Component {
   state = {
+    scrWidth: window.innerWidth,
     message: "",
     atype: "",
     // refreshTable: false,
@@ -107,8 +108,9 @@ class Deletebook extends Component {
           variant="light"
           style={{
             alignContent: "center",
-            width: "80%",
-            marginLeft: "10%",
+            width: this.state.scrWidth > 585 ? "80%" : "100%",
+            marginLeft: "auto",
+            marginRight: "auto",
             border: "2px solid black",
             borderRadius: "0px",
           }}

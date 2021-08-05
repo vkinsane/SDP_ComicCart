@@ -16,7 +16,10 @@ class Home extends Component {
     alertType: "",
     message: "",
   };
+
   componentDidMount() {
+    //get element width
+
     axios
       .get(`https://backend-api-comiccart.herokuapp.com/book/`)
       .then((res) => {
@@ -127,8 +130,7 @@ class Home extends Component {
             return (
               <React.Fragment key={++key}>
                 <Card
-                  id="card-book"
-                  className="shadow bg-white rounded mb-3 ml-4"
+                  className="shadow bg-white rounded mb-3 ml-lg-4"
                   border="secondary"
                   // style={{ width: "20rem", }}
                   style={{

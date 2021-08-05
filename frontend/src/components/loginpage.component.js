@@ -16,6 +16,7 @@ var alertTypeGlobal = "";
 
 export default class Login extends Component {
   state = {
+    scrWidth: window.innerWidth,
     fname: "",
     lname: "",
     fullName: function () {
@@ -98,7 +99,7 @@ export default class Login extends Component {
         className="my-3"
         // style={{ width: "35rem", border: "1px solid black" }}
         style={{
-          width: "50%",
+          width: this.state.scrWidth > 585 ? "50%" : "100%",
           // width: 1"45rem",
         }}
       >

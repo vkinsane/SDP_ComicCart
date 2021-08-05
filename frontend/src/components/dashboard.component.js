@@ -7,6 +7,7 @@ var key = 0;
 var statusCode;
 class Dashboard extends Component {
   state = {
+    scrWidth: window.innerWidth,
     userCart: [],
     purchasedBooks: [],
     fetchedBooks: [],
@@ -115,7 +116,7 @@ class Dashboard extends Component {
             url: `https://backend-api-comiccart.herokuapp.com/user/updatepurchasedbooks/${localStorage.getItem(
               "userId"
             )}`,
-            method: "PUT", //check here put
+            method: "PUT",
             data: { purchasedBooks: this.state.purchasedBooks },
           })
             .then(() => {
@@ -203,21 +204,33 @@ class Dashboard extends Component {
         {/* {this.state.check && (
           <Alert variant="success">Mail has been sent to you</Alert>
         )} */}
-        <Row>
+        <Row
+          className="m-auto"
+          style={{
+            width: this.state.scrWidth < 693 ? "min-content" : "",
+          }}
+        >
           {/* <CardDeck> */}
           {this.state.purchasedBooks.map((eachBook) => {
             return (
               <React.Fragment key={++key}>
                 <Card
-                  className="shadow-lg bg-white rounded"
+                  className="shadow-lg bg-white rounded mb-3 ml-lg-4"
                   border="secondary"
-                  style={{ width: "20rem" }}
+                  style={{
+                    // maxHeight: "200px",
+                    // height: "50vh",
+                    fontSize: "1px",
+                    maxWidth: "315px",
+                    width: "54vw",
+                    minWidth: "288px",
+                  }}
                 >
                   <ImageHelper book={eachBook} />
-                  <Card.Header>
+                  <Card.Header className="py-1">
                     <h4>{eachBook.bookName}</h4>
                   </Card.Header>
-                  <Card.Body>
+                  <Card.Body className="pr-3 py-2">
                     <table>
                       <tbody>
                         <tr>

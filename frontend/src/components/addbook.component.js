@@ -4,6 +4,7 @@ import { Alert } from "react-bootstrap";
 
 class Addbook extends Component {
   state = {
+    scrWidth: window.innerWidth,
     photo: "",
     bookName: "",
     author: "",
@@ -77,8 +78,9 @@ class Addbook extends Component {
         className="shadow-lg bg-white mt-5"
         style={{
           alignContent: "center",
-          width: "50%",
-          marginLeft: "25%",
+          width: this.state.scrWidth > 585 ? "50%" : "90%",
+          marginLeft: "auto",
+          marginRight: "auto",
           border: "1px solid black",
           borderRadius: "0px",
         }}

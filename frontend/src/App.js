@@ -130,23 +130,23 @@ export default class App extends Component {
                 <Nav className="me-auto">
                   {!localStorage.getItem("isLoggedIn") && (
                     <React.Fragment>
-                      <Nav.Link classname="p-2" href="/login">
+                      <Nav.Link className="p-2" href="/login">
                         Login
                       </Nav.Link>
-                      <Nav.Link classname="p-2" href="/register">
+                      <Nav.Link className="p-2" href="/register">
                         Register
                       </Nav.Link>
                     </React.Fragment>
                   )}
-                  <Nav.Link classname="p-2" href="/cart">
+                  <Nav.Link className="p-2" href="/cart">
                     Cart
                   </Nav.Link>
-                  <Nav.Link classname="p-2" href="/dashboard">
+                  <Nav.Link className="p-2" href="/dashboard">
                     My Books
                   </Nav.Link>
 
                   <Helper />
-                  <Nav.Link classname="p-2">
+                  <Nav.Link className="p-2">
                     {this.state.scrWidth < 992 && this.state.logoutBtnVisible && (
                       <React.Fragment>
                         <Button variant="danger" onClick={this.logout}>

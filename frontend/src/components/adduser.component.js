@@ -12,6 +12,7 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 export default class AddUser extends Component {
   state = {
+    scrWidth: window.innerWidth,
     fname: "",
     lname: "",
     fullName: function () {
@@ -68,7 +69,7 @@ export default class AddUser extends Component {
         // style={{ width: "35rem", border: "1px solid black" }}
         style={{
           // width: "35rem",
-          width: "50%",
+          width: this.state.scrWidth > 585 ? "50%" : "100%",
         }}
       >
         <Alert variant={this.state.alertType}>{this.state.message}</Alert>

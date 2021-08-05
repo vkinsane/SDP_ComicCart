@@ -7,6 +7,7 @@ var serialNum = 0;
 var key = 0;
 class Admindashboard extends Component {
   state = {
+    scrWidth: window.innerWidth,
     message: "",
     atype: "",
     totalUsers: 0,
@@ -79,105 +80,108 @@ class Admindashboard extends Component {
         <br />
         <br />
         {/* <h6 className="float-right"></h6> */}
-        <Table
-          className="shadow-lg bg-white rounded"
-          striped
-          bordered
-          hover
-          variant="light"
-          style={{
-            alignContent: "center",
-            width: "80%",
-            marginLeft: "10%",
-            border: "2px solid black",
-            borderRadius: "0px",
-          }}
-        >
-          <thead className="table-primary">
-            <tr>
-              <th>
-                Sr. No. &nbsp;&nbsp;
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  className="bi bi-sort-down-alt"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z" />
-                </svg>
-              </th>
-              <th>
-                Users &nbsp;&nbsp;
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="25"
-                  fill="currentColor"
-                  className="bi bi-person-fill"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                </svg>
-              </th>
-              <th>
-                User Email &nbsp;&nbsp;
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="25"
-                  fill="currentColor"
-                  className="bi bi-at"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z" />
-                </svg>
-              </th>
-              <th>
-                Books Purchased &nbsp;&nbsp;
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="25"
-                  fill="currentColor"
-                  className="bi bi-book-fill"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
-                </svg>
-              </th>
-              <th>
-                Amount spent &nbsp;&nbsp;
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="25"
-                  fill="currentColor"
-                  className="bi bi-cash-stack"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-                  <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
-                </svg>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.allUsersData.map((eachUser) => {
-              serialNum++;
-              return (
-                <tr key={++key}>
-                  <td>{serialNum}</td>
-                  <td>{`${eachUser.firstName} ${eachUser.lastName}`}</td>
-                  <td>{eachUser.email}</td>
-                  <td>{this.booksCounter(eachUser)}</td>
-                  <td>₹{this.priceCounter(eachUser)}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+        <div>
+          <Table
+            className="shadow-lg bg-white rounded"
+            striped
+            bordered
+            hover
+            variant="light"
+            style={{
+              alignContent: "center",
+              width: this.state.scrWidth > 585 ? "80%" : "38%",
+              marginLeft: "auto",
+              marginRight: "auto",
+              border: "2px solid black",
+              borderRadius: "0px",
+            }}
+          >
+            <thead className="table-primary">
+              <tr>
+                <th>
+                  Sr. No. &nbsp;&nbsp;
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="currentColor"
+                    className="bi bi-sort-down-alt"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z" />
+                  </svg>
+                </th>
+                <th>
+                  Users &nbsp;&nbsp;
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    fill="currentColor"
+                    className="bi bi-person-fill"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                  </svg>
+                </th>
+                <th>
+                  User Email &nbsp;&nbsp;
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    fill="currentColor"
+                    className="bi bi-at"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z" />
+                  </svg>
+                </th>
+                <th>
+                  Books Purchased &nbsp;&nbsp;
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    fill="currentColor"
+                    className="bi bi-book-fill"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                  </svg>
+                </th>
+                <th>
+                  Amount spent &nbsp;&nbsp;
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    fill="currentColor"
+                    className="bi bi-cash-stack"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                    <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+                  </svg>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.allUsersData.map((eachUser) => {
+                serialNum++;
+                return (
+                  <tr key={++key}>
+                    <td>{serialNum}</td>
+                    <td>{`${eachUser.firstName} ${eachUser.lastName}`}</td>
+                    <td>{eachUser.email}</td>
+                    <td>{this.booksCounter(eachUser)}</td>
+                    <td>₹{this.priceCounter(eachUser)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
         <Table
           className="shadow-lg bg-white rounded"
           striped

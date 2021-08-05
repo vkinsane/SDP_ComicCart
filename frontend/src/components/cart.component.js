@@ -6,6 +6,7 @@ var key = 0;
 var key2 = 0;
 class Cart extends Component {
   state = {
+    scrWidth: window.innerWidth,
     userCart: [],
     bookRemoved: false,
     alertType: "",
@@ -235,7 +236,13 @@ class Cart extends Component {
             <Card
               // className="floa  t-right"
               border="primary"
-              style={{ width: "18rem", left: "85%" }}
+              style={{
+                width: this.state.scrWidth > 300 ? "18rem" : "100%",
+                // left: "85%",
+                position: "fixed",
+                bottom: "5%",
+                right: "0",
+              }}
             >
               <Card.Header>
                 <svg
@@ -253,11 +260,10 @@ class Cart extends Component {
               </Card.Header>
               <Card.Body>
                 <Card.Title>ComicCart Bill</Card.Title>
-                {/* <Card.Text> */}
+
                 <Table striped bordered hover>
                   <thead>
                     <tr>
-                      {/* <th>#</th> */}
                       <th>Item Name</th>
                       <th>Price</th>
                     </tr>
