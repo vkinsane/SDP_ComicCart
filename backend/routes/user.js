@@ -188,7 +188,7 @@ router.post("/paynow", [parseUrl, parseJson], (req, res) => {
     params["CUST_ID"] = "Customer001";
     params["TXN_AMOUNT"] = paymentDetails.amount;
     params["CALLBACK_URL"] =
-      "https://backend-api-comiccart.herokuapp.com/user/callback";
+      "https://sdp-comiccart-backend.onrender.com/user/callback";
     params["EMAIL"] = paymentDetails.customerEmail;
     params["MOBILE_NO"] = paymentDetails.customerPhone;
 

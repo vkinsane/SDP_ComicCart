@@ -21,7 +21,7 @@ class Home extends Component {
     //get element width
 
     axios
-      .get(`https://backend-api-comiccart.herokuapp.com/book/`)
+      .get(`https://sdp-comiccart-backend.onrender.com/book/`)
       .then((res) => {
         this.setState({ allbooks: res.data });
       })
@@ -32,7 +32,7 @@ class Home extends Component {
     if (localStorage.getItem("userId")) {
       axios
         .get(
-          `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
+          `https://sdp-comiccart-backend.onrender.com/user/getuser/${localStorage.getItem(
             "userId"
           )}`
         )
@@ -50,11 +50,11 @@ class Home extends Component {
     // this.state.payload.push(value);
     if (localStorage.getItem("isLoggedIn")) {
       axios
-        .get(`https://backend-api-comiccart.herokuapp.com/book/${value}`)
+        .get(`https://sdp-comiccart-backend.onrender.com/book/${value}`)
         .then((res) => {
           this.state.payload.push(res.data);
           axios({
-            url: `https://backend-api-comiccart.herokuapp.com/user/updateusercart/${localStorage.getItem(
+            url: `https://sdp-comiccart-backend.onrender.com/user/updateusercart/${localStorage.getItem(
               "userId"
             )}`,
             method: "PUT", //check here put

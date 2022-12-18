@@ -51,7 +51,7 @@ class Addbook extends Component {
     // };
 
     axios({
-      url: "https://backend-api-comiccart.herokuapp.com/book/addbook",
+      url: "https://sdp-comiccart-backend.onrender.com/book/addbook",
       method: "POST",
       data: this.state.formData,
     })

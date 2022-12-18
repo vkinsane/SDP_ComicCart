@@ -64,7 +64,7 @@ export default class Login extends Component {
       password: this.state.password,
     };
     axios({
-      url: "https://backend-api-comiccart.herokuapp.com/user/login",
+      url: "https://sdp-comiccart-backend.onrender.com/user/login",
       method: "POST",
       data: payLoad,
     })

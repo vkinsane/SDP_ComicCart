@@ -19,7 +19,7 @@ class Updatebook extends Component {
   };
   componentDidMount() {
     axios
-      .get(`https://backend-api-comiccart.herokuapp.com/book/`)
+      .get(`https://sdp-comiccart-backend.onrender.com/book/`)
       .then((res) => {
         this.setState({ getBookDB: res.data });
       })
@@ -58,7 +58,7 @@ class Updatebook extends Component {
     };
     if (this.state.bookName !== "") {
       axios({
-        url: `https://backend-api-comiccart.herokuapp.com/book/updateBook/${
+        url: `https://sdp-comiccart-backend.onrender.com/book/updateBook/${
           this.state.getBookDB.filter(
             (book) => book.bookName === this.state.bookName
           )[0]._id

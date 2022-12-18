@@ -17,7 +17,7 @@ class Deletebook extends Component {
   componentDidMount() {
     this.setState({ srNo: 0 });
     axios
-      .get(`https://backend-api-comiccart.herokuapp.com/book/`)
+      .get(`https://sdp-comiccart-backend.onrender.com/book/`)
       .then((res) => {
         this.setState({ allbooks: res.data });
       })
@@ -43,7 +43,7 @@ class Deletebook extends Component {
     this.state.delArray.map((eachBookId) => {
       axios
         .delete(
-          `https://backend-api-comiccart.herokuapp.com/book/deleteBook/${eachBookId}`
+          `https://sdp-comiccart-backend.onrender.com/book/deleteBook/${eachBookId}`
         )
         .then((res) => {
           this.setState({

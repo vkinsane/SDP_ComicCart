@@ -47,7 +47,7 @@ class Dashboard extends Component {
   componentDidMount() {
     axios
       .get(
-        `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
+        `https://sdp-comiccart-backend.onrender.com/user/getuser/${localStorage.getItem(
           "userId"
         )}`
       )
@@ -69,7 +69,7 @@ class Dashboard extends Component {
       // getting user's cart into this.userCart****
       axios
         .get(
-          `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
+          `https://sdp-comiccart-backend.onrender.com/user/getuser/${localStorage.getItem(
             "userId"
           )}`
         )
@@ -99,7 +99,7 @@ class Dashboard extends Component {
       // taking already purchased book data and concat with this.userCart *****
       axios
         .get(
-          `https://backend-api-comiccart.herokuapp.com/user/getuser/${localStorage.getItem(
+          `https://sdp-comiccart-backend.onrender.com/user/getuser/${localStorage.getItem(
             "userId"
           )}`
         )
@@ -113,7 +113,7 @@ class Dashboard extends Component {
           console.log(this.state.purchasedBooks);
           // send book to user's dashboard
           axios({
-            url: `https://backend-api-comiccart.herokuapp.com/user/updatepurchasedbooks/${localStorage.getItem(
+            url: `https://sdp-comiccart-backend.onrender.com/user/updatepurchasedbooks/${localStorage.getItem(
               "userId"
             )}`,
             method: "PUT",
@@ -146,7 +146,7 @@ class Dashboard extends Component {
     if (statusCode === 1) {
       // Emptying user cart ******
       axios({
-        url: `https://backend-api-comiccart.herokuapp.com/user/updateusercart/${localStorage.getItem(
+        url: `https://sdp-comiccart-backend.onrender.com/user/updateusercart/${localStorage.getItem(
           "userId"
         )}`,
         method: "PUT",
@@ -164,7 +164,7 @@ class Dashboard extends Component {
       email: id,
     };
     axios({
-      url: "https://backend-api-comiccart.herokuapp.com/user/sendmail",
+      url: "https://sdp-comiccart-backend.onrender.com/user/sendmail",
       method: "POST",
       data: payLoad,
     })
