@@ -38,7 +38,7 @@ mongoose.connect(uri, {
 const conn = mongoose.connection;
 
 conn.once("open", () => {
-  console.log("MongoDB Connection established");
+  console.debug("MongoDB Connection established");
 });
 
 // const eventRouter = require("./routes/event");
@@ -51,5 +51,5 @@ app.use("/book", bookRouter);
 app.use("/user", userRouter);
 
 app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+  console.debug(`Server is running on port: ${port}`);
 });

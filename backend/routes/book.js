@@ -45,7 +45,7 @@ router.post("/addbook", (req, res) => {
       product.photo.data = fs.readFileSync(file.photo.path);
       product.photo.contentType = file.photo.type;
     }
-    // console.log(product);
+    // console.debug(product);
 
     //save to the DB
     product.save((err, product) => {
@@ -124,7 +124,7 @@ router.get("/photo/:productId", (req, res) => {
   //   res.set("Content-Type", foundBook.photo.contentType);
   //   return res.send(foundBook.photo.data);
   // }
-  // console.log(foundBook.photo);
+  // console.debug(foundBook.photo);
 });
 router.get("/:id", (req, res) => {
   book

@@ -35,13 +35,13 @@ export default class App extends Component {
         ? JSON.parse(localStorage.getItem("userData")).role === 1
         : false,
     });
-    // console.log(this.state.scrWidth);
+    // console.debug(this.state.scrWidth);
   }
   showAdminRoutes() {
     if (this.showPrivateRoutes()) {
       if (JSON.parse(localStorage.getItem("userData")).role === 1) {
         // return JSON.parse(localStorage.getItem("userData"));
-        // console.log("this user is admin");
+        // console.debug("this user is admin");
         // this.state.userIsAdmin = true;
         this.setState({ userIsAdmin: true });
         return true;
@@ -107,7 +107,7 @@ export default class App extends Component {
         : false,
     });
 
-    // console.log(this.state);
+    // console.debug(this.state);
   };
   render() {
     return (
@@ -160,7 +160,7 @@ export default class App extends Component {
                   {/* Helper Component to check whether user is admin or not */}
                 </Nav>
               </Navbar.Collapse>
-              {/* {console.log(this.state.scrWidth > 992)} */}
+              {/* {console.debug(this.state.scrWidth > 992)} */}
               {this.state.scrWidth > 992 && (
                 <Form inline>
                   {this.state.logoutBtnVisible && (

@@ -81,14 +81,14 @@ module.exports = crypt;
 
   function logsalt(err, salt) {
     if (!err) {
-      console.log('salt is ' + salt);
+      console.debug('salt is ' + salt);
     }
   }
 
   if (require.main === module) {
     var enc = crypt.encrypt('One97');
-    console.log('encrypted - ' + enc);
-    console.log('decrypted - ' + crypt.decrypt(enc));
+    console.debug('encrypted - ' + enc);
+    console.debug('decrypted - ' + crypt.decrypt(enc));
 
     for (i = 0; i < 5; i++) {
       crypt.gen_salt(4, logsalt);

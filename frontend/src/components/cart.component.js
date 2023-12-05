@@ -29,7 +29,7 @@ class Cart extends Component {
       )
       .then((res) => {
         this.setState({ userCart: res.data.cart });
-        // console.log(this.state.userCart);
+        // console.debug(this.state.userCart);
         if (this.state.userCart.length === 0) {
           this.setState({
             showAlert: true,
@@ -46,12 +46,12 @@ class Cart extends Component {
           alertType: "danger",
           message: "There was an error try logging in again",
         });
-        console.log(errors);
+        console.debug(errors);
       });
   }
   removeFromCart = ({ target }) => {
     const { value } = target;
-    console.log(
+    console.debug(
       this.state.userCart.filter(
         (bookInUserCart) => bookInUserCart._id === value
       )[0]
@@ -66,7 +66,7 @@ class Cart extends Component {
       ),
       1
     );
-    // console.log(this.state);
+    // console.debug(this.state);
     axios({
       url: `https://sdp-comiccart-backend.onrender.com/user/updateusercart/${localStorage.getItem(
         "userId"
@@ -125,15 +125,15 @@ class Cart extends Component {
           // message: res.data.message,
           // redirect: true,
         });
-        console.log(res);
+        console.debug(res);
       })
       .catch((res) => {
         this.setState({
           alertType: "danger",
           message: "Send mail req to backend failure",
         });
-        console.log(res);
-        console.log("problem");
+        console.debug(res);
+        console.debug("problem");
       });
   };
 

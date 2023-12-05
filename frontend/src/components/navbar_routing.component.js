@@ -29,7 +29,7 @@ export default class Navrouter extends Component {
     if (this.showPrivateRoutes()) {
       if (JSON.parse(localStorage.getItem("userData")).role === 1) {
         // return JSON.parse(localStorage.getItem("userData"));
-        // console.log("this user is admin");
+        // console.debug("this user is admin");
         this.state.userIsAdmin = true;
         return true;
       } else {
@@ -58,7 +58,7 @@ export default class Navrouter extends Component {
         : false,
     });
 
-    // console.log(this.state);
+    // console.debug(this.state);
   };
   render() {
     return (

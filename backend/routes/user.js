@@ -29,6 +29,8 @@ router.post("/login", (req, res) => {
   // }
   // **it is founding any email
   user.findOne({ email: req.body.email }).then((user) => {
+    console.debug("In login");
+
     if (user == null) {
       res
         .header({ message: "User Not found" })
@@ -46,6 +48,7 @@ router.post("/login", (req, res) => {
           role: user.role,
         });
       } else {
+        console.error("Incorrect Password");
         res.status(400).json("Incorrect Password");
       }
     }
@@ -139,7 +142,7 @@ router.post("/sendmail", (req, res) => {
       res.json({
         message: "Mail Sent",
       });
-      console.log("Email sent");
+      console.debug("Email sent");
     })
     .catch((error) => {
       res.json("Mail Not sent There was some problem");
@@ -235,7 +238,7 @@ router.post("/callback", (req, res) => {
     var post_data = qs.parse(body);
 
     // received params in callback
-    console.log("Callback Response: ", post_data, "\n");
+    console.debug("Callback Response: ", post_data, "\n");
 
     // verify the checksum
     var checksumhash = post_data.CHECKSUMHASH;
@@ -245,7 +248,7 @@ router.post("/callback", (req, res) => {
       config.PaytmConfig.key,
       checksumhash
     );
-    console.log("Checksum Result => ", result, "\n");
+    console.debug("Checksum Result => ", result, "\n");
 
     // Send Server-to-Server request to verify Order Status
     var params = { MID: config.PaytmConfig.mid, ORDERID: post_data.ORDERID };
@@ -277,7 +280,7 @@ router.post("/callback", (req, res) => {
           });
 
           post_res.on("end", function () {
-            console.log("S2S Response: ", response, "\n");
+            console.debug("S2S Response: ", response, "\n");
 
             var _result = JSON.parse(response);
             if (_result.STATUS == "TXN_SUCCESS") {

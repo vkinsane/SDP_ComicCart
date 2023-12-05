@@ -62,7 +62,7 @@ class Dashboard extends Component {
         }
       })
       .catch(() => {
-        console.log("there was some error");
+        console.debug("there was some error");
       });
     this.checkStatus();
     if (statusCode === 1) {
@@ -75,7 +75,7 @@ class Dashboard extends Component {
         )
         .then((res) => {
           this.setState({ userCart: res.data.cart });
-          // console.log(this.state.userCart);
+          // console.debug(this.state.userCart);
           if (this.state.userCart === "") {
             this.setState({
               showAlert: true,
@@ -83,7 +83,7 @@ class Dashboard extends Component {
               message: "Your cart is empty please add something in your cart!",
             });
           }
-          // console.log(this.state.userCart);
+          // console.debug(this.state.userCart);
         })
         .catch((errors) => {
           // console.error(errors);
@@ -93,7 +93,7 @@ class Dashboard extends Component {
             alertType: "danger",
             message: "There was an error try logging in again",
           });
-          console.log(errors);
+          console.debug(errors);
         });
       // ****
       // taking already purchased book data and concat with this.userCart *****
@@ -110,7 +110,7 @@ class Dashboard extends Component {
               this.state.userCart
             ),
           });
-          console.log(this.state.purchasedBooks);
+          console.debug(this.state.purchasedBooks);
           // send book to user's dashboard
           axios({
             url: `https://sdp-comiccart-backend.onrender.com/user/updatepurchasedbooks/${localStorage.getItem(
@@ -120,7 +120,7 @@ class Dashboard extends Component {
             data: { purchasedBooks: this.state.purchasedBooks },
           })
             .then(() => {
-              console.log("Successful");
+              console.debug("Successful");
               this.setState({
                 alertType: "success",
                 message: "Successfully Updated Purchased books 👍",
@@ -129,7 +129,7 @@ class Dashboard extends Component {
               this.emptyUserCart();
             })
             .catch(() => {
-              console.log("Internal Server error");
+              console.debug("Internal Server error");
               this.setState({
                 alertType: "danger",
                 message: "There was an error!",
@@ -137,7 +137,7 @@ class Dashboard extends Component {
             });
         })
         .catch(() => {
-          console.log("there was some error");
+          console.debug("there was some error");
         });
       // *****
     }
@@ -152,7 +152,7 @@ class Dashboard extends Component {
         method: "PUT",
         data: { cart: [] },
       }).then(() => {
-        console.log("Emptied User cart");
+        console.debug("Emptied User cart");
       });
       // ******
     }
@@ -177,15 +177,15 @@ class Dashboard extends Component {
           // message: res.data.message,
           // redirect: true,
         });
-        console.log(res);
+        console.debug(res);
       })
       .catch((res) => {
         this.setState({
           alertType: "danger",
           message: "Send mail req to backend failure",
         });
-        console.log(res);
-        console.log("problem");
+        console.debug(res);
+        console.debug("problem");
       });
   };
 

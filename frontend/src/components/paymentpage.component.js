@@ -28,13 +28,13 @@ class Paymentpage extends Component {
     //     this.setState({ paymentForm: res.data });
     //   })
     //   .catch((res) => {
-    //     console.log("there was a error getting index.html page");
+    //     console.debug("there was a error getting index.html page");
     //   });
   }
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
-    // console.log(this.state);
+    // console.debug(this.state);
   };
   render() {
     // return <div dangerouslySetInnerHTML={{ __html: this.state.paymentForm }} />;

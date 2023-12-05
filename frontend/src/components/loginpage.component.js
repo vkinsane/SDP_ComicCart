@@ -50,12 +50,12 @@ export default class Login extends Component {
       messageGlobal = "User Added Successfully ✔";
       alertTypeGlobal = "info";
     }
-    // console.log(afterLogoutUrl[indexOflogin + 6]);
+    // console.debug(afterLogoutUrl[indexOflogin + 6]);
   }
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
-    console.log(this.state);
+    console.debug(this.state);
   };
   submit = (event) => {
     event.preventDefault();
@@ -83,14 +83,14 @@ export default class Login extends Component {
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("userData", JSON.stringify(this.state.userData));
 
-        // console.log(this.state);
+        // console.debug(this.state);
       })
       .catch((res) => {
         this.setState({
           alertType: "danger",
           message: "Incorrect Email or Password",
         });
-        console.log(res);
+        console.debug(res);
       });
   };
   render() {

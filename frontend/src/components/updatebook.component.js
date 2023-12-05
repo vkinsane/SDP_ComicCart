@@ -38,7 +38,7 @@ class Updatebook extends Component {
     this.state.formData.set(name, value);
     this.setState({ [name]: value });
     // Its not logging the book data at same time
-    console.log(
+    console.debug(
       this.state.getBookDB.filter(
         (book) => book.bookName === this.state.bookName
       )[0]
@@ -72,7 +72,7 @@ class Updatebook extends Component {
             message: "Book Data Updated Successfully",
             atype: "success",
           });
-          console.log("Book Data Updated Successfully");
+          console.debug("Book Data Updated Successfully");
         })
         .catch(() => {
           this.setState({
@@ -80,7 +80,7 @@ class Updatebook extends Component {
             message: "Failed to Update Book Data",
             atype: "danger",
           });
-          console.log("Internal Server error");
+          console.debug("Internal Server error");
         });
     } else {
       this.setState({

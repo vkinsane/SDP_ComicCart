@@ -21,21 +21,21 @@ class Addbook extends Component {
     const value = name === "photo" ? event.target.files[0] : event.target.value;
     this.state.formData.set(name, value);
     this.setState({ [name]: value });
-    console.log(this.state.photo);
+    console.debug(this.state.photo);
   };
   handleChange = ({ target }) => {
     //taking element on which this method is applied, target is a keyword
     const { name, value } = target;
     this.state.formData.set(name, value);
     this.setState({ [name]: value });
-    console.log(this.state.formData);
+    console.debug(this.state.formData);
   };
   //   handleChangePhoto = ({ target }) => {
   //     //taking element on which this method is applied, target is a keyword
   //     const { name, value } = target.files[0];
   //     this.state.formData.set(name, value);
   //     this.setState({ [name]: value });
-  //     console.log(this.state.formData);
+  //     console.debug(this.state.formData);
   //   };
 
   submit = (event) => {
@@ -61,7 +61,7 @@ class Addbook extends Component {
           message: "Book Added Successfully",
           atype: "success",
         });
-        // console.log("New Book Data has been sent to the server");
+        // console.debug("New Book Data has been sent to the server");
       })
       .catch(() => {
         this.setState({
@@ -69,7 +69,7 @@ class Addbook extends Component {
           message: "Failed to Add Book",
           atype: "danger",
         });
-        console.log("Internal Server error");
+        console.debug("Internal Server error");
       });
   };
   render() {

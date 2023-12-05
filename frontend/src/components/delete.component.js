@@ -37,7 +37,7 @@ class Deletebook extends Component {
       this.state.delArray.splice(element);
     }
     this.setState({ lengthOfdelArray: this.state.delArray.length });
-    console.log(this.state.delArray);
+    console.debug(this.state.delArray);
   };
   delMultiple = () => {
     this.state.delArray.map((eachBookId) => {
@@ -51,13 +51,13 @@ class Deletebook extends Component {
             atype: "success",
             delArray: [],
           });
-          console.log(`Successfully deleted ${eachBookId}`);
+          console.debug(`Successfully deleted ${eachBookId}`);
           this.componentDidMount();
-          //   console.log(this.state.allbooks.find({ bookName: "Book 2" }));
+          //   console.debug(this.state.allbooks.find({ bookName: "Book 2" }));
         })
         .catch((errors) => {
           //   console.error(errors);
-          console.log("Failed to delete");
+          console.debug("Failed to delete");
         });
       return 0;
     });

@@ -28,7 +28,7 @@ export default class AddUser extends Component {
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
-    console.log(this.state);
+    console.debug(this.state);
   };
   submit = (event) => {
     event.preventDefault();
@@ -52,14 +52,14 @@ export default class AddUser extends Component {
           redirect: true,
           // message: "Successfully added user",
         });
-        console.log(res);
+        console.debug(res);
       })
       .catch((res) => {
         this.setState({
           alertType: "danger",
           message: "There was some problem!",
         });
-        console.log(res);
+        console.debug(res);
       });
   };
   render() {

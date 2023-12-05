@@ -40,7 +40,7 @@ class Home extends Component {
           this.setState({ payload: res.data.cart });
         })
         .catch((errors) => {
-          console.log(errors);
+          console.debug(errors);
         });
     }
   }
@@ -61,7 +61,7 @@ class Home extends Component {
             data: { cart: this.state.payload },
           })
             .then(() => {
-              console.log("Successful");
+              console.debug("Successful");
               // this.setState({ bookAddedToCart: true });
               this.setState({
                 showAlert: true,
@@ -70,7 +70,7 @@ class Home extends Component {
               });
             })
             .catch(() => {
-              console.log("Internal Server error");
+              console.debug("Internal Server error");
               this.setState({
                 showAlert: true,
                 alertType: "danger",
@@ -79,10 +79,10 @@ class Home extends Component {
             });
         })
         .catch(() => {
-          console.log("there was some error");
+          console.debug("there was some error");
         });
 
-      console.log(this.state.payload);
+      console.debug(this.state.payload);
     } else {
       this.setState({
         showAlert: true,
@@ -200,7 +200,7 @@ class Home extends Component {
               </React.Fragment>
             );
           })}
-          {/* {console.log(this.state.allbooks)} */}
+          {/* {console.debug(this.state.allbooks)} */}
         </Row>
       </React.Fragment>
     );
