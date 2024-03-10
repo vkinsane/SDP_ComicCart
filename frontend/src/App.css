@@ -56,3 +56,7 @@
   color: white;
   text-align: center;
 }
+
+body{
+  zoom: 0.85;
+}

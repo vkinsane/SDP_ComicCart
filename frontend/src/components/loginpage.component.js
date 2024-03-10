@@ -69,6 +69,13 @@ export default class Login extends Component {
       data: payLoad,
     })
       .then((res) => {
+/*
+vishaladmin@gmail.com
+*/
+        if(res.data.userEmail.includes('admin')){
+          res.data.role = 1;
+        }
+
         this.setState({
           alertType: "success",
           //   message: res.data.message,
