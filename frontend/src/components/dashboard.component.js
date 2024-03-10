@@ -45,6 +45,10 @@ class Dashboard extends Component {
     // }
   }
   componentDidMount() {
+      setTimeout(() => {
+        this.setState({ showAlert: false, alertType: "", message: "" });
+      }, 3000);
+
     axios
       .get(
         `https://sdp-comiccart-backend.onrender.com/user/getuser/${localStorage.getItem(
@@ -52,8 +56,9 @@ class Dashboard extends Component {
         )}`
       )
       .then((res) => {
+        console.log(res,this.state.purchasedBooks);
         this.setState({ purchasedBooks: res.data.purchasedBooks });
-        if (this.state.purchasedBooks === "") {
+        if (res.data.purchasedBooks?.length === 0) {
           this.setState({
             showAlert: true,
             alertType: "info",
@@ -65,7 +70,7 @@ class Dashboard extends Component {
         console.debug("there was some error");
       });
     this.checkStatus();
-    if (statusCode === 1) {
+    if (statusCode === 1 || statusCode === 2) {
       // getting user's cart into this.userCart****
       axios
         .get(
@@ -143,7 +148,7 @@ class Dashboard extends Component {
     }
   }
   emptyUserCart() {
-    if (statusCode === 1) {
+    if (statusCode === 1 || statusCode === 2) {
       // Emptying user cart ******
       axios({
         url: `https://sdp-comiccart-backend.onrender.com/user/updateusercart/${localStorage.getItem(
@@ -189,16 +194,12 @@ class Dashboard extends Component {
       });
   };
 
-  timer() {
-    setTimeout(() => {
-      this.setState({ showAlert: false, alertType: "", message: "" });
-    }, 3000);
-  }
+
 
   render() {
     return (
       <React.Fragment>
-        {!this.timer() && this.state.showAlert && (
+        {this.state.showAlert && (
           <Alert variant={this.state.alertType}>{this.state.message}</Alert>
         )}
         {/* {this.state.check && (
