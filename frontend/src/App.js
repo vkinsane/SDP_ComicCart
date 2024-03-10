@@ -251,8 +251,8 @@ export default class App extends Component {
           <div className="container">
             <span className="">
               ComicCart &#169; 2020-21 | For any queries please contact on{" "}
-              <a href="https://vishal-khandate.netlify.app/">
-                vishal.khandate19@vit.edu
+              <a href="">
+                admin@gmail.com
               </a>
             </span>
           </div>
