@@ -28,7 +28,7 @@ class Dashboard extends Component {
       pageUrl.substring(indexOfStatus + 10, pageUrl.length)
     );
     this.setState({ statusCode: statusCode });
-    if (statusCode === 1) {
+    if (statusCode === 1 || statusCode === 2) {
       this.setState({
         showAlert: true,
         alertType: "info",
@@ -36,13 +36,13 @@ class Dashboard extends Component {
           "Your Purchase was successfull. Book has been added to your dashboard 👍",
       });
     }
-    if (statusCode === 2) {
-      this.setState({
-        showAlert: true,
-        alertType: "danger",
-        message: "Your Purchase was failed. Try again!!!",
-      });
-    }
+    // if (statusCode === 2) {
+    //   this.setState({
+    //     showAlert: true,
+    //     alertType: "danger",
+    //     message: "Your Purchase was failed. Try again!!!",
+    //   });
+    // }
   }
   componentDidMount() {
     axios
